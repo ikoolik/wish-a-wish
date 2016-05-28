@@ -5,10 +5,11 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Welcome</div>
+                <div class="panel-heading">Добро пожаловать!</div>
 
                 <div class="panel-body">
-                    Your Application's Landing Page.
+                    <p>Wish a Wish - это миниатюрный сервис списка желаний.<p>
+                    <p>Все что можно делать - это добавлять и редактировать свои желания, а так же делиться ими с другими людьми.</p>
                 </div>
             </div>
         </div>

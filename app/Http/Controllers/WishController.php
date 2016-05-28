@@ -24,7 +24,7 @@ class WishController extends Controller
             if(!Auth::check()) {
                 abort(404);
             }
-            
+
             $user = Auth::user();
         }
 
@@ -40,6 +40,8 @@ class WishController extends Controller
      */
     public function create()
     {
+        $this->middleware('auth');
+        
         return view('wishes.create');
     }
 
@@ -51,6 +53,8 @@ class WishController extends Controller
      */
     public function store(Request $request)
     {
+        $this->middleware('auth');
+
         Auth::user()->wishes()->create($request->all());
         return redirect(route('wishes.index'));
     }
@@ -74,6 +78,10 @@ class WishController extends Controller
      */
     public function edit(Wish $wish)
     {
+        if(Gate::denies('update', $wish)) {
+            abort(403);
+        }
+
         return view('wishes.edit', compact('wish'));
     }
 
@@ -86,6 +94,10 @@ class WishController extends Controller
      */
     public function update(Request $request, Wish $wish)
     {
+        if(Gate::denies('update', $wish)) {
+            abort(403);
+        }
+
         $wish->update($request->all());
 
         return redirect(route('wishes.show', $wish->id));
@@ -99,6 +111,10 @@ class WishController extends Controller
      */
     public function destroy(Wish $wish)
     {
+        if(Gate::denies('delete', $wish)) {
+            abort(403);
+        }
+
         $wish->delete();
         return redirect(route('wishes.index'));
     }

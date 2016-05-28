@@ -32,4 +32,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Wish::class);
     }
+
+    public function owns(Wish $wish)
+    {
+        return $this->id === $wish->user_id;
+    }
 }

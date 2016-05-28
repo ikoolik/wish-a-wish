@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Policies\WishPolicy;
+use App\Wish;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -13,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        Wish::class => WishPolicy::class,
     ];
 
     /**

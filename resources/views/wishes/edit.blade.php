@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <h1>Редактируем "{{ $wish->name }}"</h1>
+            <h1>Изменить желание</h1>
             <div class="row">
                 <div class="col-md-3 hidden-sm hidden-xs">
                     <img src="{{ $wish->image_url }}" class="img-thumbnail">

@@ -11,16 +11,20 @@
                 </div>
                 <div class="col-md-7">
                     <div>
-                        {!! $wish->description !!}
+                        {{ $wish->description }}
                     </div>
 
                     <hr>
-                    <a class="btn btn-default" href="{{ route('wishes.edit', $wish->id) }}"><i class="fa fa-pencil"></i> Изменить</a>
+                    @can('update', $wish)
+                        <a class="btn btn-default" href="{{ route('wishes.edit', $wish->id) }}"><i class="fa fa-pencil"></i> Изменить</a>
+                    @endcan
                 </div>
                 <div class="col-md-2">
-                    {{ Form::open(['method' => 'DELETE', 'route' => ['wishes.destroy', $wish->id], 'class' => 'form-inline']) }}
-                    {{ Form::button('<i class="fa fa-trash"></i> Удалить', ['type' => 'submit', 'class' => 'btn btn-danger']) }}
-                    {{ Form::close() }}
+                    @can('delete', $wish)
+                        {{ Form::open(['method' => 'DELETE', 'route' => ['wishes.destroy', $wish->id], 'class' => 'form-inline']) }}
+                        {{ Form::button('<i class="fa fa-trash"></i> Удалить', ['type' => 'submit', 'class' => 'btn btn-danger']) }}
+                        {{ Form::close() }}
+                    @endcan
                 </div>
             </div>
         </div>
