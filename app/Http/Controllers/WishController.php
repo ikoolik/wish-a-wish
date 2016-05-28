@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
 use App\User;
 use App\Wish;
+use Gate;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 
 class WishController extends Controller
@@ -19,9 +19,9 @@ class WishController extends Controller
      */
     public function index(User $user)
     {
-        if(!$user->exists) {
+        if (!$user->exists) {
 
-            if(!Auth::check()) {
+            if (!Auth::check()) {
                 abort(404);
             }
 
@@ -41,14 +41,14 @@ class WishController extends Controller
     public function create()
     {
         $this->middleware('auth');
-        
+
         return view('wishes.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -78,7 +78,7 @@ class WishController extends Controller
      */
     public function edit(Wish $wish)
     {
-        if(Gate::denies('update', $wish)) {
+        if (Gate::denies('update', $wish)) {
             abort(403);
         }
 
@@ -88,13 +88,13 @@ class WishController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @param  Wish $wish
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Wish $wish)
     {
-        if(Gate::denies('update', $wish)) {
+        if (Gate::denies('update', $wish)) {
             abort(403);
         }
 
@@ -111,7 +111,7 @@ class WishController extends Controller
      */
     public function destroy(Wish $wish)
     {
-        if(Gate::denies('delete', $wish)) {
+        if (Gate::denies('delete', $wish)) {
             abort(403);
         }
 
