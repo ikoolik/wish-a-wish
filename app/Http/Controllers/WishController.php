@@ -22,14 +22,14 @@ class WishController extends Controller
         if (!$user->exists) {
 
             if (!Auth::check()) {
-                abort(404);
+                return redirect(url('/login'))->withErrors('Чтоб просматривать список желаний нужно авторизоваться.');
             }
 
             $user = Auth::user();
         }
 
         $wishes = $user->wishes()->orderBy('created_at', 'desc')->get();
-        return view('wishes.index', compact('wishes'));
+        return view('wishes.index', compact('wishes', 'user'));
 
     }
 

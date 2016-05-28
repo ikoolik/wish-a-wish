@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="row">
-                @if(Auth::check())
+                @if(Auth::check() && Auth::user()->id === $user->id)
                     <div class="col-md-4">
                         <div class="panel panel-default wish">
                             <div class="panel-heading">

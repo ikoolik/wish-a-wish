@@ -18,4 +18,4 @@ Route::get('/', function () {
 Route::auth();
 
 Route::resource('wishes', 'WishController');
-Route::get('{user}/wishes', 'WishController@index');
+Route::get('{user}/wishes', ['as' => 'wishes.user_index', 'uses' => 'WishController@index']);
