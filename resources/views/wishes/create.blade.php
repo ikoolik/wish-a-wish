@@ -12,13 +12,16 @@
                 <div class="col-md-7">
                     {{ Form::open(['route' => ['wishes.store']]) }}
                     <div class="form-group">
-                        {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Название']) }}
+                        <label>Название</label>
+                        {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Феррари']) }}
                     </div>
                     <div class="form-group">
-                        {{ Form::text('image_url', '', ['class' => 'form-control', 'placeholder' => 'URL картинки']) }}
+                        <label>Ссылка на картинку</label>
+                        {{ Form::text('image_url', '', ['class' => 'form-control', 'placeholder' => 'http://example.com/image.jpg']) }}
                     </div>
                     <div class="form-group">
-                        {{ Form::textarea('description', '', ['class' => 'form-control', 'placeholder' => 'Комментарий']) }}
+                        <label>Комментарий</label>
+                        {{ Form::textarea('description', '', ['class' => 'form-control', 'placeholder' => 'Обязательно красного цвета']) }}
                     </div>
                     <hr>
                     {{ Form::button('<i class="fa fa-save"></i> Сохранить', ['type' => 'submit', 'class' => 'btn btn-primary']) }}
