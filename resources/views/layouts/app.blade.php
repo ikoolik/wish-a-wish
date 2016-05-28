@@ -20,7 +20,7 @@
             font-family: 'Open Sans';
         }
 
-        .panel-body {
+        .wish .panel-body {
             height: 200px;
             background-position: center;
             background-size: contain;
