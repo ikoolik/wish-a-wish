@@ -54,7 +54,9 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ route('wishes.index') }}">Мои желания</a></li>
+                    @if (Auth::check())
+                        <li><a href="{{ route('wishes.index') }}">Мои желания</a></li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->

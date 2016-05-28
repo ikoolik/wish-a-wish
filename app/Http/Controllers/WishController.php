@@ -20,6 +20,11 @@ class WishController extends Controller
     public function index(User $user)
     {
         if(!$user->exists) {
+
+            if(!Auth::check()) {
+                abort(404);
+            }
+            
             $user = Auth::user();
         }
 

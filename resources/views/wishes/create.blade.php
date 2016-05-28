@@ -10,21 +10,21 @@
                         <img src="http://previews.123rf.com/images/naddya/naddya1311/naddya131100064/24188141-Gift-box-Vector-black-silhouette--Stock-Vector-gift.jpg" class="img-thumbnail">
                     </div>
                     <div class="col-md-7">
-                        {!! Form::open(['route' => ['wishes.store']]) !!}
-                        <h1>
-                            {{ Form::text('name') }}
-                            <small>
-                                {{ Form::text('image_url') }}
-                            </small>
-                        </h1>
-                        <div>
-                            {{ Form::textarea('description') }}
+                        {{ Form::open(['route' => ['wishes.store']]) }}
+                        <div class="form-group">
+                            {{ Form::text('name', '', ['class' => 'form-controll', 'placeholder' => 'Название']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::text('image_url', '', ['class' => 'form-controll', 'placeholder' => 'URL картинки']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::textarea('description', '', ['class' => 'form-controll', 'placeholder' => 'Комментарий']) }}
                         </div>
                         <hr>
                         {{ Form::button('<i class="fa fa-save"></i> Сохранить', ['type' => 'submit', 'class' => 'btn btn-primary']) }}
                         {{ Form::close() }}
                     </div>
-                    {!! Form::close() !!}
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>
