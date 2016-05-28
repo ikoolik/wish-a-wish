@@ -79,7 +79,7 @@ class WishController extends Controller
     public function edit(Wish $wish)
     {
         if (Gate::denies('update', $wish)) {
-            abort(403);
+            return redirect(route('wishes.show', $wish->id))->withErrors("У вас нет прав на изменение этого желания");
         }
 
         return view('wishes.edit', compact('wish'));
@@ -95,7 +95,7 @@ class WishController extends Controller
     public function update(Request $request, Wish $wish)
     {
         if (Gate::denies('update', $wish)) {
-            abort(403);
+            return abort(403, 'Insufficient permission');
         }
 
         $wish->update($request->all());
@@ -112,7 +112,7 @@ class WishController extends Controller
     public function destroy(Wish $wish)
     {
         if (Gate::denies('delete', $wish)) {
-            abort(403);
+            return abort(403, 'Insufficient permission');
         }
 
         $wish->delete();
