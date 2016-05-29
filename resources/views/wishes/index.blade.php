@@ -32,7 +32,7 @@
                                     {{ $wish->name }}
                                 </h3>
                             </div>
-                            <div class="panel-body" style="background-image: url('{{ $wish->image_url }}');"></div>
+                            <div class="panel-body" style="background-image: url('{{ $wish->image }}');"></div>
                             <div class="panel-footer">
                                 <div class="row">
                                     <div class="col-md-6">

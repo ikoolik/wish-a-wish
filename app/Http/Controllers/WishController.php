@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use AWS;
+use Image;
+use Config;
 use App\Http\Requests;
 use App\User;
 use App\Wish;
@@ -58,10 +61,15 @@ class WishController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string',
-            'description' => 'string'
+            'description' => 'string',
+            'image' => 'image'
         ]);
 
-        Auth::user()->wishes()->create($request->all());
+        $wish = Auth::user()->wishes()->create($request->all());
+        if(!is_null($request->file('image'))) {
+            $wish->setImageFromFile($request->file('image'))->save();
+        }
+        
         return redirect(route('wishes.index'));
     }
 
@@ -104,7 +112,17 @@ class WishController extends Controller
             return abort(403, 'Insufficient permission');
         }
 
+        $this->validate($request, [
+            'name' => 'required|string',
+            'description' => 'string',
+            'image' => 'image'
+        ]);
+
         $wish->update($request->all());
+
+        if(!is_null($request->file('image'))) {
+            $wish->setImageFromFile($request->file('image'))->save();
+        }
 
         return redirect(route('wishes.show', $wish->id));
     }

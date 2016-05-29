@@ -152,6 +152,8 @@ return [
          * External Service Providers...
          */
         Collective\Html\HtmlServiceProvider::class,
+        Aws\Laravel\AwsServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -176,6 +178,9 @@ return [
 
     'aliases' => [
 
+        /*
+         * Built in facades
+         */
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -206,8 +211,14 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /*
+         * Additional facades
+         */
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'AWS' => Aws\Laravel\AwsFacade::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

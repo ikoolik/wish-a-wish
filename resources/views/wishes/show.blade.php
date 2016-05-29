@@ -7,11 +7,15 @@
             <h1>{{ $wish->name }}</h1>
             <div class="row">
                 <div class="col-md-3">
-                    <img src="{{ $wish->image_url }}" class="img-thumbnail">
+                    <img src="{{ $wish->image }}" class="img-thumbnail">
                 </div>
                 <div class="col-md-7">
                     <div>
-                        {{ $wish->description }}
+                        @if(!$wish->description)
+                            <i>Комментарий отсутствует</i>
+                        @else
+                            {{ $wish->description }}
+                        @endif
                     </div>
 
                     <hr>
