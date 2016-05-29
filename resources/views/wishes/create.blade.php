@@ -9,12 +9,10 @@
             <div class="row">
                 <div class="col-md-3">
                     <label>Картинка</label>
-                    <div id="image-preview-wrapper">
-                        <div class="img-thumbnail" id="image-preview" style="background-image: url('http://previews.123rf.com/images/naddya/naddya1311/naddya131100064/24188141-Gift-box-Vector-black-silhouette--Stock-Vector-gift.jpg') ">
-                        </div>
-                        <label for="image-input" class="btn btn-default btn-block">Выбрать картинку</label>
-                        {{ Form::file('image', ['class' => 'hidden', 'id' => 'image-input']) }}
+                    <div id="image-preview" class="img-thumbnail" style="background-image: url('http://previews.123rf.com/images/naddya/naddya1311/naddya131100064/24188141-Gift-box-Vector-black-silhouette--Stock-Vector-gift.jpg') ">
                     </div>
+                    <label for="image-input" class="btn btn-default btn-block">Выбрать картинку</label>
+                    {{ Form::file('image', ['class' => 'hidden', 'id' => 'image-input']) }}
                 </div>
                 <div class="col-md-7">
                     <div class="form-group">

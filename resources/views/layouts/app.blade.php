@@ -28,8 +28,8 @@
         }
 
         #image-preview {
-            height:200px;
-            width:200px;
+            width: 100%;
+            padding-bottom: 100%;
             background-repeat:no-repeat;
             background-position: center;
             background-size: cover;
@@ -37,6 +37,7 @@
 
         #image-preview-wrapper {
             width:200px;
+            height:10px;
         }
 
         .fa-btn {
