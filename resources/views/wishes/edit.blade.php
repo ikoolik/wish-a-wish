@@ -11,7 +11,6 @@
                 </div>
                 <div class="col-md-7">
                     {{ Form::model($wish, ['method' => 'PUT', 'route' => ['wishes.update', $wish->id]]) }}
-                    {{ Form::open(['route' => ['wishes.store']]) }}
                     <div class="form-group">
                         <label>Название</label>
                         {{ Form::text('name', $wish->name, ['class' => 'form-control', 'placeholder' => 'Феррари']) }}
