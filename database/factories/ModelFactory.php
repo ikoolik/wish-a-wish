@@ -25,7 +25,7 @@ $factory->define(User::class, function (Faker\Generator $faker) {
 
 $factory->define(Wish::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->title,
+        'name' => $faker->name,
         'description' => $faker->sentence()
     ];
 });

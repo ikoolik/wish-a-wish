@@ -8,84 +8,68 @@ use Auth;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
-class WishEditTest extends TestCase
+class WishDeleteTest extends TestCase
 {
     use DatabaseTransactions;
 
     /** @test */
-    public function it_shows_edit_form_to_owner()
+    public function it_shows_delete_button_to_owner_on_show_page()
     {
         $user = factory(User::class)->create();
         $wish = factory(Wish::class)->create(['user_id' => $user->id]);
         Auth::login($user);
 
-        $this->visit(route('wishes.edit', $wish->id))
+        $this->visit(route('wishes.show', $wish->id))
             ->seeStatusCode(200)
-            ->see($wish->name)
-            ->see($wish->description)
-            ->see('Сохранить');
+            ->see("Удалить");
     }
 
     /** @test */
-    public function it_does_not_show_edit_form_to_unauthorized_user()
+    public function it_does_not_show_delete_button_to_unauthorized()
     {
         $someone = factory(User::class)->create();
         $wish = factory(Wish::class)->create(['user_id' => $someone->id]);
 
-        $this->visit(route('wishes.edit', $wish->id))
-            ->see($wish->name)
-            ->see($wish->description)
-            ->seePageIs(route('wishes.show', $wish->id))
-            ->see('Ошибка!');
+        $this->visit(route('wishes.show', $wish->id))
+            ->seeStatusCode(200)
+            ->dontSee("Удалить");
     }
 
     /** @test */
-    public function it_does_not_show_edit_form_to_authorized_user()
+    public function it_does_not_show_someones_delete_button_to_authorized()
     {
         $someone = factory(User::class)->create();
         $wish = factory(Wish::class)->create(['user_id' => $someone->id]);
 
         Auth::login(factory(User::class)->create());
 
-        $this->visit(route('wishes.edit', $wish->id))
-            ->see($wish->name)
-            ->see($wish->description)
-            ->seePageIs(route('wishes.show', $wish->id))
-            ->see('Ошибка!');
+        $this->visit(route('wishes.show', $wish->id))
+            ->seeStatusCode(200)
+            ->dontSee("Удалить");
     }
 
     /** @test */
-    public function it_changes_name_and_description()
+    public function delete_button_deletes_the_wish()
     {
         $user = factory(User::class)->create();
         $wish = factory(Wish::class)->create(['user_id' => $user->id]);
         Auth::login($user);
 
-        $name = $this->faker->name;
-        $description = $this->faker->sentence();
-
-        $this->visit(route('wishes.edit', $wish->id))
-            ->seeStatusCode(200)
+        $this->visit(route('wishes.show', $wish->id))
             ->seeInDatabase('wishes', $wish->toArray())
-            ->type($name, 'name')
-            ->type($description, 'description')
-            ->see('Сохранить')
-            ->press('Сохранить')
-            ->seePageIs(route('wishes.show', $wish->id))
+            ->press("Удалить")
+            ->seePageIs(route('wishes.index'))
             ->dontSee($wish->name)
-            ->dontSee($wish->description)
-            ->see($name)
-            ->see($description)
-            ->notSeeInDatabase('wishes', $wish->toArray());
+            ->dontSeeInDatabase('wishes', $wish->toArray());
     }
 
     /** @test */
-    public function it_returns_403_to_unauthorized_put_attempt()
+    public function it_returns_403_to_unauthorized_destroy_attempt()
     {
         $someone = factory(User::class)->create();
         $wish = factory(Wish::class)->create(['user_id' => $someone->id]);
 
-        $this->put(route('wishes.update', $wish->id))
+        $this->delete(route('wishes.destroy', $wish->id))
             ->seeStatusCode(403)
             ->seeInDatabase('wishes', $wish->toArray());
     }
@@ -98,7 +82,7 @@ class WishEditTest extends TestCase
 
         Auth::login(factory(User::class)->create());
 
-        $this->put(route('wishes.update', $wish->id))
+        $this->delete(route('wishes.destroy', $wish->id))
             ->seeStatusCode(403)
             ->seeInDatabase('wishes', $wish->toArray());
     }

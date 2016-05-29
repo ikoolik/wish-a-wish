@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class WishController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['create', 'store']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -40,8 +45,6 @@ class WishController extends Controller
      */
     public function create()
     {
-        $this->middleware('auth');
-
         return view('wishes.create');
     }
 
@@ -53,7 +56,10 @@ class WishController extends Controller
      */
     public function store(Request $request)
     {
-        $this->middleware('auth');
+        $this->validate($request, [
+            'name' => 'required|string',
+            'description' => 'string'
+        ]);
 
         Auth::user()->wishes()->create($request->all());
         return redirect(route('wishes.index'));
