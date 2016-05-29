@@ -9,3 +9,8 @@
     cd /var/www/wish
     composer install
 @endtask
+
+@task('migrate')
+    cd /var/www/wish
+    php artisan migrate --force
+@endtask

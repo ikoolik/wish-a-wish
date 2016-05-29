@@ -42,7 +42,7 @@ class Wish extends Model
             'ACL' => 'public-read',
             'Body' => file_get_contents($pathName)
         ];
-        $this->image_url = $s3->putObject($params)->get('ObjectURL');
+        $this->image_url = $s3->putObject($params)->get('ObjectURL')."?cache=".md5(time());
 
         return $this;
     }
