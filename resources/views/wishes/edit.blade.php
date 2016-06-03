@@ -21,7 +21,8 @@
                     </div>
                     <div class="form-group">
                         <label>Комментарий</label>
-                        {{ Form::textarea('description', $wish->description, ['class' => 'form-control', 'placeholder' => 'Обязательно красного цвета']) }}
+                        <trix-editor input="description" placeholder="Обязательно красного цвета"></trix-editor>
+                        {{ Form::textarea('description', $wish->description, ['id' => 'description', 'class' => 'hidden']) }}
                     </div>
                     <hr>
                     {{ Form::button('<i class="fa fa-save"></i> Сохранить', ['type' => 'submit', 'class' => 'btn btn-primary']) }}

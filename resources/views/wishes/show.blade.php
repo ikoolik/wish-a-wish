@@ -14,7 +14,7 @@
                         @if(!$wish->description)
                             <i>Комментарий отсутствует</i>
                         @else
-                            {{ $wish->description }}
+                            {!! $wish->description !!}
                         @endif
                     </div>
 

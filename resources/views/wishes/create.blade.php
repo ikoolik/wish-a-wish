@@ -17,11 +17,12 @@
                 <div class="col-md-7">
                     <div class="form-group">
                         <label>Название</label>
-                        {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Феррари']) }}
+                        {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Феррари']) }}
                     </div>
                     <div class="form-group">
                         <label>Комментарий</label>
-                        {{ Form::textarea('description', '', ['class' => 'form-control', 'placeholder' => 'Обязательно красного цвета']) }}
+                        <trix-editor input="description" placeholder="Обязательно красного цвета"></trix-editor>
+                        {{ Form::textarea('description', null, ['id' => 'description', 'class' => 'hidden']) }}
                     </div>
                     <hr>
                     {{ Form::button('<i class="fa fa-save"></i> Сохранить', ['type' => 'submit', 'class' => 'btn btn-primary']) }}
