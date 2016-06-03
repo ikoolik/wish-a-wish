@@ -7,7 +7,7 @@
     composer install
     php artisan migrate --force
     npm install
-    bower install
+    ./node_modules/.bin/bower install
     ./node_modules/.bin/gulp
     php artisan up
 @endtask
@@ -39,7 +39,7 @@
 
 @task('bower')
     cd /var/www/wish
-    bower install
+    ./node_modules/.bin/bower install
 @endtask
 
 @task('gulp')
