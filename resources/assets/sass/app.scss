@@ -1,7 +1,15 @@
+@import "variables.scss";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 body {
   font-family: 'Verdana';
+}
+
+.navbar-brand {
+  font-family: 'Sansita One';
+  font-size: 250%;
+  text-transform: capitalize;
+  color: $color-primary;
 }
 
 .wish .panel-body {
