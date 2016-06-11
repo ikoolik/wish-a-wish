@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/css/all.css" type="text/css">
+    <link rel="stylesheet" href="/css/app.css" type="text/css">
 
 </head>
 <body id="app-layout">
@@ -29,7 +29,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ Auth::check() ? route('wishes.index') : url('/') }}">
-                    Вишенка
+                    Wish a wish
                 </a>
             </div>
 

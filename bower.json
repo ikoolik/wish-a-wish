@@ -1,7 +1,6 @@
 {
   "name": "wish-a-wish",
   "dependencies": {
-    "trix": "^0.9.7",
     "jquery": "^2.2.4",
     "bootstrap": "^3.3.6"
   }
