@@ -2,20 +2,33 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Image;
+use App\Presenters\WishPresenter;
 use AWS;
 use Config;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Image;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Wish extends Model
 {
-    /** @var array  */
+    /** @var array */
     protected $fillable = ['name', 'description'];
 
-    /** @var array  */
+    /** @var array */
     protected $appends = ['image'];
+
+    /**
+     * Register the lifecycle hooks
+     */
+    static protected function boot()
+    {
+        parent::boot();
+
+        static::saving(function (Wish $wish) {
+            $wish->description = htmlentities($wish->description);
+        });
+    }
 
     /**
      * @return BelongsTo
@@ -24,10 +37,15 @@ class Wish extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    
+
+    /**
+     * @param UploadedFile $file
+     *
+     * @return $this|bool
+     */
     public function setImageFromFile(UploadedFile $file)
     {
-        if(!$this->exists) {
+        if (!$this->exists) {
             return false;
         }
 
@@ -42,13 +60,21 @@ class Wish extends Model
             'ACL' => 'public-read',
             'Body' => file_get_contents($pathName)
         ];
-        $this->image_url = $s3->putObject($params)->get('ObjectURL')."?cache=".md5(time());
+        $this->image_url = $s3->putObject($params)->get('ObjectURL') . "?cache=" . md5(time());
 
         return $this;
     }
+    
+    public function presenter()
+    {
+        return new WishPresenter($this);
+    }
 
+    /**
+     * @return string
+     */
     public function getImageAttribute()
     {
-        return $this->image_url?: "http://previews.123rf.com/images/naddya/naddya1311/naddya131100064/24188141-Gift-box-Vector-black-silhouette--Stock-Vector-gift.jpg";
+        return $this->image_url ?: "http://previews.123rf.com/images/naddya/naddya1311/naddya131100064/24188141-Gift-box-Vector-black-silhouette--Stock-Vector-gift.jpg";
     }
 }
