@@ -9,10 +9,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <label>Картинка</label>
-                    <div id="image-preview" class="img-thumbnail" style="background-image: url('{{ $wish->image }}') ">
-                    </div>
-                    <label for="image-input" class="btn btn-default btn-block">Заменить картинку</label>
-                    {{ Form::file('image', ['class' => 'hidden', 'id' => 'image-input']) }}
+                    <file-picker current="{{ $wish->image }}"></file-picker>
                 </div>
                 <div class="col-md-7">
                     <div class="form-group">

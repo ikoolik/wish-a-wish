@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Providers;
+namespace Wish\Providers;
 
-use App\Policies\WishPolicy;
-use App\Wish;
+use Wish\Policies\WishPolicy;
+use Wish\Wish;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 

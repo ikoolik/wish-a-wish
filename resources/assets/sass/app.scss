@@ -33,3 +33,19 @@ body {
 .fa-btn {
   margin-right: 6px;
 }
+
+.file-picker .nav-tabs li {
+  width:50%;
+}
+
+.file-picker .tab-pane {
+  padding: 10px 40px 30px;
+  text-align: center;
+}
+
+.file-picker .close {
+  position: absolute;
+  margin: 0;
+  top: -23px;
+  right: -23px;
+}

@@ -11,8 +11,8 @@
 |
 */
 
-use App\User;
-use App\Wish;
+use Wish\User;
+use Wish\Wish;
 
 $factory->define(User::class, function (Faker\Generator $faker) {
     return [

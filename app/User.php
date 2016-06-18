@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Wish;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Wish\Http\Controllers;
 
 use AWS;
 use Image;
 use Config;
-use App\Http\Requests;
-use App\User;
-use App\Wish;
+use Wish\Http\Requests;
+use Wish\User;
+use Wish\Wish;
 use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,12 +62,26 @@ class WishController extends Controller
         $this->validate($request, [
             'name' => 'required|string',
             'description' => 'string',
-            'image' => 'image'
+            'image' => 'image',
+            'image_url' => 'string',
+            'image_upload_type' => 'string'
         ]);
 
-        $wish = Auth::user()->wishes()->create($request->all());
-        if(!is_null($request->file('image'))) {
-            $wish->setImageFromFile($request->file('image'))->save();
+        $wish = Auth::user()->wishes()->create($request->except('image_url', 'image_upload_type'));
+
+        if($request->get('image_upload_type')) {
+            switch ($request->get('image_upload_type')) {
+                case 'file' :
+                    if(!is_null($request->file('image'))) {
+                        $wish->setImageFromFile($request->file('image'))->save();
+                    }
+                    break;
+                case 'url' :
+                    if(!is_null($request->get('image_url'))) {
+                        $wish->image_url = $request->get('image_url');
+                        $wish->save();
+                    }
+            }
         }
         
         return redirect(route('wishes.index'));
@@ -115,13 +129,26 @@ class WishController extends Controller
         $this->validate($request, [
             'name' => 'required|string',
             'description' => 'string',
-            'image' => 'image'
+            'image' => 'image',
+            'image_url' => 'string',
+            'image_upload_type' => 'string'
         ]);
 
-        $wish->update($request->all());
+        $wish->update($request->except('image_url', 'image_upload_type'));
 
-        if(!is_null($request->file('image'))) {
-            $wish->setImageFromFile($request->file('image'))->save();
+        if($request->get('image_upload_type')) {
+            switch ($request->get('image_upload_type')) {
+                case 'file' :
+                    if(!is_null($request->file('image'))) {
+                        $wish->setImageFromFile($request->file('image'))->save();
+                    }
+                    break;
+                case 'url' :
+                    if(!is_null($request->get('image_url'))) {
+                        $wish->image_url = $request->get('image_url');
+                        $wish->save();
+                    }
+            }
         }
 
         return redirect(route('wishes.show', $wish->id));

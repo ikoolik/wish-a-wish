@@ -1,7 +1,7 @@
 <?php
-namespace App\Presenters;
+namespace Wish\Presenters;
 
-use App\Wish;
+use Wish\Wish;
 
 class WishPresenter
 {

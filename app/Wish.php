@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace Wish;
 
-use App\Presenters\WishPresenter;
+use Wish\Presenters\WishPresenter;
 use AWS;
 use Config;
 use Illuminate\Database\Eloquent\Model;
