@@ -13,7 +13,9 @@
                                     Новое желание
                                 </h3>
                             </div>
-                            <div class="panel-body" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png');"></div>
+                            <a href="{{ route('wishes.create') }}">
+                                <div class="panel-body" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png');"></div>
+                            </a>
                             <div class="panel-footer">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -32,7 +34,9 @@
                                     {{ $wish->name }}
                                 </h3>
                             </div>
-                            <div class="panel-body" style="background-image: url('{{ $wish->image }}');"></div>
+                            <a href="{{ route('wishes.show', $wish->id) }}">
+                                <div class="panel-body" style="background-image: url('{{ $wish->image }}');"></div>
+                            </a>
                             <div class="panel-footer">
                                 <div class="row">
                                     <div class="col-md-6">
