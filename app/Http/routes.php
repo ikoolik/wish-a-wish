@@ -12,6 +12,9 @@
 */
 
 Route::get('/', function () {
+    if(Auth::check()) {
+        return redirect(route('wishes.index'));
+    }
     return view('welcome');
 });
 
