@@ -6,8 +6,8 @@
         <div class="col-md-10 col-md-offset-1">
             <h1>{{ $wish->name }}</h1>
             <div class="row">
-                <div class="col-md-3">
-                    <img src="{{ $wish->image }}" class="img-thumbnail">
+                <div class="col-sm-3">
+                    <div class="square-image material" style="background-image: url('{{ $wish->image }}');"></div>
                 </div>
                 <div class="col-md-7">
                     <div>

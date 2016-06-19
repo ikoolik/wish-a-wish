@@ -1,7 +1,7 @@
 <div class="file-picker">
-    <div id="image-preview" class="img-thumbnail"
-         v-bind:style="{ 'background-image': `url('${this.image}')` }">
+    <div class="square-image material" :style="{ 'background-image': `url('${this.image}')` }">
     </div>
+    <br>
     <input type="hidden" name="image_upload_type" v-model="type">
     <span class="btn btn-default btn-block" data-toggle="modal" data-target="#change-image-{{ unique }}">
         Заменить картинку

@@ -37,23 +37,11 @@ body {
   }
 }
 
-.wish .panel-body {
-  height: 200px;
-
-  background: no-repeat center;
-  background-size: contain;
-}
-
-#image-preview {
+.square-image {
   width: 100%;
   padding-bottom: 100%;
   background: no-repeat center;
   background-size: cover;
-}
-
-#image-preview-wrapper {
-  width:200px;
-  height:10px;
 }
 
 .fa-btn {
@@ -74,4 +62,16 @@ body {
   margin: 0;
   top: -23px;
   right: -23px;
+}
+
+.panel-default {
+  border: 0px;
+
+  .panel-heading {
+    border-bottom: 0px;
+  }
+}
+
+.material {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
