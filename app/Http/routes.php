@@ -11,14 +11,31 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', ['as' => 'landing', 'uses' => function () {
     if(Auth::check()) {
         return redirect(route('wishes.index'));
     }
     return view('welcome');
-});
+}]);
 
-Route::auth();
+Route::get('login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@showLoginForm']);
+Route::post('login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@login']);
+Route::get('logout', ['as' => 'auth.logout', 'uses' => 'Auth\AuthController@logout']);
+
+// Registration Routes...
+Route::get('register', ['as' => 'auth.register', 'uses' => 'Auth\AuthController@showRegistrationForm']);
+Route::post('register', ['as' => 'auth.register', 'uses' => 'Auth\AuthController@register']);
+
+// Password Reset Routes...
+Route::get('password/reset/{token?}', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@showResetForm']);
+Route::post('password/email', ['as' => 'auth.password.email', 'uses' => 'Auth\PasswordController@sendResetLinkEmail']);
+Route::post('password/reset', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@reset']);
+
 
 Route::resource('wishes', 'WishController');
 Route::get('{user}/wishes', ['as' => 'wishes.user_index', 'uses' => 'WishController@index']);
+
+
+Route::get('/{user}', ['as' => 'user', 'uses' => function (Wish\User $user) {
+    return redirect(route('wishes.user_index', $user->id));
+}]);

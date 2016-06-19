@@ -29,11 +29,11 @@ class WishController extends Controller
     {
         if (!$user->exists) {
 
-            if (!Auth::check()) {
+            if (!auth()->check()) {
                 return redirect(url('/login'))->withErrors('Чтоб просматривать список желаний нужно авторизоваться.');
             }
 
-            $user = Auth::user();
+            return redirect(route('wishes.user_index', auth()->user()->id));
         }
 
         $wishes = $user->wishes()->orderBy('created_at', 'desc')->get();
