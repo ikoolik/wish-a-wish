@@ -69,6 +69,12 @@ body {
 
   .panel-heading {
     border-bottom: 0px;
+
+    .panel-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 }
 
