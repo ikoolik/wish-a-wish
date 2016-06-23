@@ -5,4 +5,6 @@ $color-warning: #f1c40f;
 
 
 $brand-primary: #3498db;
+$brand-primary-light: lighten($brand-primary, 40%);
+
 $nav-link-hover-bg: #fff;

@@ -65,10 +65,11 @@ body {
 }
 
 .panel-default {
-  border: 0px;
+  border: 1px solid $brand-primary-light;
 
   .panel-heading {
     border-bottom: 0px;
+    background-color: $brand-primary-light;
 
     .panel-title {
       white-space: nowrap;
