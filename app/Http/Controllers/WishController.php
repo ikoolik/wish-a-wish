@@ -33,7 +33,7 @@ class WishController extends Controller
                 return redirect(url('/login'))->withErrors('Чтоб просматривать список желаний нужно авторизоваться.');
             }
 
-            return redirect(route('wishes.user_index', auth()->user()->id));
+            return redirect(route('wishes.user_index', auth()->user()->slug));
         }
 
         $wishes = $user->wishes()->orderBy('created_at', 'desc')->get();

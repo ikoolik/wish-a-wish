@@ -16,7 +16,7 @@ Breadcrumbs::register('wishes.index', function($breadcrumbs)
 Breadcrumbs::register('wishes.user_index', function($breadcrumbs, \Wish\User $user)
 {
     $breadcrumbs->parent('user', $user);
-    $breadcrumbs->push('Желания', route('wishes.user_index', $user->id));
+    $breadcrumbs->push('Желания', route('wishes.user_index', $user->slug));
 });
 
 Breadcrumbs::register('wishes.show', function($breadcrumbs, \Wish\Wish $wish)

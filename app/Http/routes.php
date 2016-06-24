@@ -37,5 +37,5 @@ Route::get('{user}/wishes', ['as' => 'wishes.user_index', 'uses' => 'WishControl
 
 
 Route::get('/{user}', ['as' => 'user', 'uses' => function (Wish\User $user) {
-    return redirect(route('wishes.user_index', $user->id));
+    return redirect(route('wishes.user_index', $user->slug));
 }]);
