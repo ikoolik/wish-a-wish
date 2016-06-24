@@ -4,9 +4,12 @@ namespace Wish;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Wish\Traits\HasSlug;
 
 class User extends Authenticatable
 {
+    use HasSlug;
+
     /**
      * The attributes that are mass assignable.
      *
