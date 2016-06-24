@@ -2,8 +2,8 @@
 
 namespace Tests\Acceptance;
 
-use App\User;
-use App\Wish;
+use Wish\User;
+use Wish\Wish;
 use Auth;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
@@ -66,7 +66,7 @@ class WishEditTest extends TestCase
 
         $this->visit(route('wishes.edit', $wish->id))
             ->seeStatusCode(200)
-            ->seeInDatabase('wishes', $wish->toArray())
+            ->seeInDatabase('wishes', $this->toDbArray($wish))
             ->type($name, 'name')
             ->type($description, 'description')
             ->see('Сохранить')
@@ -76,7 +76,7 @@ class WishEditTest extends TestCase
             ->dontSee($wish->description)
             ->see($name)
             ->see($description)
-            ->notSeeInDatabase('wishes', $wish->toArray());
+            ->notSeeInDatabase('wishes', $this->toDbArray($wish));
     }
 
     /** @test */
@@ -87,7 +87,7 @@ class WishEditTest extends TestCase
 
         $this->put(route('wishes.update', $wish->id))
             ->seeStatusCode(403)
-            ->seeInDatabase('wishes', $wish->toArray());
+            ->seeInDatabase('wishes', $this->toDbArray($wish));
     }
 
     /** @test */
@@ -100,6 +100,10 @@ class WishEditTest extends TestCase
 
         $this->put(route('wishes.update', $wish->id))
             ->seeStatusCode(403)
-            ->seeInDatabase('wishes', $wish->toArray());
+            ->seeInDatabase('wishes', $this->toDbArray($wish));
+    }
+
+    protected function toDbArray(Wish $wish) {
+        return array_except($wish->toArray(), 'image');
     }
 }

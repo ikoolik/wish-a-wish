@@ -2,9 +2,7 @@
 
 namespace Tests\Acceptance;
 
-use App\User;
-use App\Wish;
-use Auth;
+use Wish\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
@@ -15,7 +13,7 @@ class WishCreateTest extends TestCase
     /** @test */
     public function it_shows_create_form_to_authorized_user()
     {
-        Auth::login(factory(User::class)->create());
+        auth()->login(factory(User::class)->create());
 
         $this->visit(route('wishes.create'))
             ->seeStatusCode(200)
@@ -33,7 +31,7 @@ class WishCreateTest extends TestCase
     /** @test */
     public function it_creates_wish()
     {
-        Auth::login(factory(User::class)->create());
+        auth()->login(factory(User::class)->create());
 
         $name = $this->faker->name;
         $description = $this->faker->sentence();
@@ -41,7 +39,7 @@ class WishCreateTest extends TestCase
             ->type($name, 'name')
             ->type($description, 'description')
             ->press('Сохранить')
-            ->seePageIs(route('wishes.index'))
+            ->seePageIs(route('wishes.user_index', auth()->user()->id))
             ->see($name);
     }
 

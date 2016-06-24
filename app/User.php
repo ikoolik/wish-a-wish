@@ -2,13 +2,14 @@
 
 namespace Wish;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Wish\Traits\HasSlug;
 
 class User extends Authenticatable
 {
-    use HasSlug;
+    use HasSlug, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

@@ -2,8 +2,8 @@
 
 namespace Tests\Acceptance;
 
-use App\User;
-use App\Wish;
+use Wish\User;
+use Wish\Wish;
 use Auth;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;

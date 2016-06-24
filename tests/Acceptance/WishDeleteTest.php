@@ -2,8 +2,8 @@
 
 namespace Tests\Acceptance;
 
-use App\User;
-use App\Wish;
+use Wish\User;
+use Wish\Wish;
 use Auth;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
@@ -56,11 +56,11 @@ class WishDeleteTest extends TestCase
         Auth::login($user);
 
         $this->visit(route('wishes.show', $wish->id))
-            ->seeInDatabase('wishes', $wish->toArray())
+            ->seeInDatabase('wishes', $this->toDbArray($wish))
             ->press("Удалить")
-            ->seePageIs(route('wishes.index'))
+            ->seePageIs(route('wishes.user_index', auth()->user()->id))
             ->dontSee($wish->name)
-            ->dontSeeInDatabase('wishes', $wish->toArray());
+            ->dontSeeInDatabase('wishes', $this->toDbArray($wish));
     }
 
     /** @test */
@@ -71,7 +71,7 @@ class WishDeleteTest extends TestCase
 
         $this->delete(route('wishes.destroy', $wish->id))
             ->seeStatusCode(403)
-            ->seeInDatabase('wishes', $wish->toArray());
+            ->seeInDatabase('wishes', $this->toDbArray($wish));
     }
 
     /** @test */
@@ -84,6 +84,10 @@ class WishDeleteTest extends TestCase
 
         $this->delete(route('wishes.destroy', $wish->id))
             ->seeStatusCode(403)
-            ->seeInDatabase('wishes', $wish->toArray());
+            ->seeInDatabase('wishes', $this->toDbArray($wish));
+    }
+
+    protected function toDbArray(Wish $wish) {
+        return array_except($wish->toArray(), 'image');
     }
 }
