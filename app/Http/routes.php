@@ -36,6 +36,4 @@ Route::resource('wishes', 'WishController');
 Route::get('{user}/wishes', ['as' => 'wishes.user_index', 'uses' => 'WishController@index']);
 
 
-Route::get('/{user}', ['as' => 'user', 'uses' => function (Wish\User $user) {
-    return redirect(route('wishes.user_index', $user->slug));
-}]);
+Route::get('/{user}', ['as' => 'users.show', 'uses' => 'UserController@show']);

@@ -1,21 +1,21 @@
 <?php
 
 
-Breadcrumbs::register('user', function($breadcrumbs, \Wish\User $user) {
-    $breadcrumbs->push($user->name, route('user', $user));
+Breadcrumbs::register('users.show', function($breadcrumbs, \Wish\User $user) {
+    $breadcrumbs->push($user->name, route('users.show', $user));
 });
 
 // My Wishes
 Breadcrumbs::register('wishes.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('user', auth()->user());
+    $breadcrumbs->parent('users.show', auth()->user());
     $breadcrumbs->push('Желания', route('wishes.index'));
 });
 
 // Someones Wishes
 Breadcrumbs::register('wishes.user_index', function($breadcrumbs, \Wish\User $user)
 {
-    $breadcrumbs->parent('user', $user);
+    $breadcrumbs->parent('users.show', $user);
     $breadcrumbs->push('Желания', route('wishes.user_index', $user->slug));
 });
 
