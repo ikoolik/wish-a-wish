@@ -37,3 +37,5 @@ Route::get('{user}/wishes', ['as' => 'wishes.user_index', 'uses' => 'WishControl
 
 
 Route::get('/{user}', ['as' => 'users.show', 'uses' => 'UserController@show']);
+Route::get('/{user}/edit', ['as' => 'users.edit', 'uses' => 'UserController@edit']);
+Route::put('/{user}/update', ['as' => 'users.update', 'uses' => 'UserController@update']);

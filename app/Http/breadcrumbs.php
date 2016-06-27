@@ -5,6 +5,11 @@ Breadcrumbs::register('users.show', function($breadcrumbs, \Wish\User $user) {
     $breadcrumbs->push($user->name, route('users.show', $user));
 });
 
+Breadcrumbs::register('users.edit', function($breadcrumbs, \Wish\User $user) {
+    $breadcrumbs->parent('users.show', $user);
+    $breadcrumbs->push('Настройки', route('users.edit', $user));
+});
+
 // My Wishes
 Breadcrumbs::register('wishes.index', function($breadcrumbs)
 {
