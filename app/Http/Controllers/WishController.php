@@ -3,14 +3,14 @@
 namespace Wish\Http\Controllers;
 
 use AWS;
-use Image;
 use Config;
-use Wish\Http\Requests;
-use Wish\User;
-use Wish\Wish;
 use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Image;
+use Wish\Http\Requests;
+use Wish\User;
+use Wish\Wish;
 
 class WishController extends Controller
 {
@@ -23,6 +23,7 @@ class WishController extends Controller
      * Display a listing of the resource.
      *
      * @param User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(User $user)
@@ -55,6 +56,7 @@ class WishController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -69,21 +71,21 @@ class WishController extends Controller
 
         $wish = Auth::user()->wishes()->create($request->except('image_url', 'image_upload_type'));
 
-        if($request->get('image_upload_type')) {
+        if ($request->get('image_upload_type')) {
             switch ($request->get('image_upload_type')) {
                 case 'file' :
-                    if(!is_null($request->file('image'))) {
+                    if (!is_null($request->file('image'))) {
                         $wish->setImageFromFile($request->file('image'))->save();
                     }
                     break;
                 case 'url' :
-                    if(!is_null($request->get('image_url'))) {
+                    if (!is_null($request->get('image_url'))) {
                         $wish->image_url = $request->get('image_url');
                         $wish->save();
                     }
             }
         }
-        
+
         return redirect(route('wishes.index'));
     }
 
@@ -91,6 +93,7 @@ class WishController extends Controller
      * Display the specified resource.
      *
      * @param Wish $wish
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Wish $wish)
@@ -102,6 +105,7 @@ class WishController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Wish $wish
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Wish $wish)
@@ -118,6 +122,7 @@ class WishController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  Wish $wish
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Wish $wish)
@@ -136,15 +141,15 @@ class WishController extends Controller
 
         $wish->update($request->except('image_url', 'image_upload_type'));
 
-        if($request->get('image_upload_type')) {
+        if ($request->get('image_upload_type')) {
             switch ($request->get('image_upload_type')) {
                 case 'file' :
-                    if(!is_null($request->file('image'))) {
+                    if (!is_null($request->file('image'))) {
                         $wish->setImageFromFile($request->file('image'))->save();
                     }
                     break;
                 case 'url' :
-                    if(!is_null($request->get('image_url'))) {
+                    if (!is_null($request->get('image_url'))) {
                         $wish->image_url = $request->get('image_url');
                         $wish->save();
                     }
@@ -158,6 +163,7 @@ class WishController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Wish $wish
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Wish $wish)

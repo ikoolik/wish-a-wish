@@ -6,12 +6,12 @@ use Wish\Wish;
 class WishPresenter
 {
     protected $wish;
-    
+
     public function __construct(Wish $wish)
     {
         $this->wish = $wish;
     }
-    
+
     public function description()
     {
 

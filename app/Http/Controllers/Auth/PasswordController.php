@@ -2,8 +2,8 @@
 
 namespace Wish\Http\Controllers\Auth;
 
-use Wish\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Wish\Http\Controllers\Controller;
 
 class PasswordController extends Controller
 {

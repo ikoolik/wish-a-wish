@@ -2,9 +2,9 @@
 
 namespace Wish\Policies;
 
+use Illuminate\Auth\Access\HandlesAuthorization;
 use Wish\User;
 use Wish\Wish;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
 class WishPolicy
 {

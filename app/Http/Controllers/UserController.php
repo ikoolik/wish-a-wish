@@ -3,7 +3,6 @@
 namespace Wish\Http\Controllers;
 
 use Gate;
-
 use Illuminate\Http\Request;
 use Wish\User;
 
@@ -13,6 +12,7 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param User $user
+     *
      * @return \Illuminate\View\View
      */
     public function show(User $user)
@@ -41,6 +41,7 @@ class UserController extends Controller
      *
      * @param  Request $request
      * @param  User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
@@ -50,7 +51,7 @@ class UserController extends Controller
         }
 
         $this->validate($request, [
-            'slug' => 'required|string|unique:users,slug,'.$user->id,
+            'slug' => 'required|string|unique:users,slug,' . $user->id,
             'name' => 'required|string'
         ]);
 

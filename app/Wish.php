@@ -2,13 +2,13 @@
 
 namespace Wish;
 
-use Wish\Presenters\WishPresenter;
 use AWS;
 use Config;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Image;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Wish\Presenters\WishPresenter;
 
 class Wish extends Model
 {
@@ -64,7 +64,7 @@ class Wish extends Model
 
         return $this;
     }
-    
+
     public function presenter()
     {
         return new WishPresenter($this);

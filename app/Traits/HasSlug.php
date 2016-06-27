@@ -6,11 +6,12 @@ namespace Wish\Traits;
  *
  * @package Wish\Traits
  */
-trait HasSlug {
+trait HasSlug
+{
 
     public static function bootHasSlug()
     {
-        static::creating(function($model) {
+        static::creating(function ($model) {
             $initialSlug = $slug = str_random();
 
             $i = 1;
