@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <div class="col-md-7">
-                    <p>Дата регистрации {{ $user->created_at->format('Y.m.d') }}</p>
+                    <p>Дата регистрации {{ $user->created_at->format('d.m.Y') }}</p>
                     <p>
                         <a href="{{ route('wishes.user_index', $user->slug) }}">
                             Желания ({{ $user->wishes()->count() }})
