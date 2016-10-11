@@ -6,7 +6,7 @@
         <div class="col-md-10 col-md-offset-1">
             <h1>{{ $wish->name }}</h1>
             <div class="row">
-                <div class="col-sm-3 col-xs-8 col-xs-offset-2">
+                <div class="col-sm-3 col-xs-8 col-xs-offset-2 col-sm-offset-0">
                     <div class="square-image material" style="background-image: url('{{ $wish->image }}');"></div>
                     <div class="controll-buttons hidden-xs">
                         @can('update', $wish)
