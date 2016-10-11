@@ -9,8 +9,16 @@
                 <div class="col-sm-3 col-xs-8 col-xs-offset-2 col-sm-offset-0">
                     <div class="square-image material" style="background-image: url('{{ $wish->image }}');"></div>
                     <div class="controll-buttons hidden-xs">
+                        @if($wish->isArchived())
+                            <span class="btn btn-block" disabled>Подарено {{ $wish->archived_at->format('d.m.Y') }}</span>
+                        @endif
                         @can('update', $wish)
-                            <a class="btn btn-block btn-default" href="{{ route('wishes.edit', $wish->id) }}"><i class="fa fa-pencil"></i> Изменить</a>
+                            @if(!$wish->isArchived())
+                                {{ Form::open(['method' => 'POST', 'route' => ['wishes.archive', $wish->id], 'class' => 'form-inline']) }}
+                                {{ Form::button('<i class="fa fa-gift"></i> Подарено', ['type' => 'submit', 'class' => 'btn btn-primary btn-block']) }}
+                                {{ Form::close() }}
+                            @endif
+                            <a class="btn btn-block btn-default" href="{{ route('wishes.archive', $wish->id) }}"><i class="fa fa-pencil"></i> Изменить</a>
                         @endcan
                         @can('delete', $wish)
                             {{ Form::open(['method' => 'DELETE', 'route' => ['wishes.destroy', $wish->id], 'class' => 'form-inline']) }}

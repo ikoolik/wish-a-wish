@@ -159,6 +159,16 @@ class WishController extends Controller
         return redirect(route('wishes.show', $wish->id));
     }
 
+    public function archive(Wish $wish)
+    {
+        if (Gate::denies('update', $wish)) {
+            return abort(403, 'Insufficient permission');
+        }
+
+        $wish->archive();
+        return redirect(route('wishes.show', $wish->id));
+    }
+
     /**
      * Remove the specified resource from storage.
      *

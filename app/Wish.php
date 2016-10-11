@@ -3,6 +3,7 @@
 namespace Wish;
 
 use AWS;
+use Carbon\Carbon;
 use Config;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,6 +18,9 @@ class Wish extends Model
 
     /** @var array */
     protected $appends = ['image'];
+
+    /** @var array  */
+    protected $dates = ['archived_at'];
 
     /**
      * Register the lifecycle hooks
@@ -65,10 +69,41 @@ class Wish extends Model
         return $this;
     }
 
-    public function presenter()
+    /**
+     * @return $this
+     */
+    public function archive()
     {
-        return new WishPresenter($this);
+        $this->archived_at = Carbon::create();
+        $this->save();
+        return $this;
     }
+
+    public function isArchived()
+    {
+        return !is_null($this->archived_at);
+    }
+
+    /**
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeNotArchived($query)
+    {
+        return $query->whereNull('archived_at');
+    }
+
+    /**
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopeArchived($query)
+    {
+        return $query->whereNotNull('archived_at');
+    }
+
 
     /**
      * @return string
@@ -76,5 +111,10 @@ class Wish extends Model
     public function getImageAttribute()
     {
         return $this->image_url ?: "http://previews.123rf.com/images/naddya/naddya1311/naddya131100064/24188141-Gift-box-Vector-black-silhouette--Stock-Vector-gift.jpg";
+    }
+
+    public function presenter()
+    {
+        return new WishPresenter($this);
     }
 }

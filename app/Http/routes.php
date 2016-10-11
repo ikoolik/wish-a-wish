@@ -38,8 +38,9 @@ Route::post('password/reset', ['as' => 'auth.password.reset', 'uses' => 'Auth\Pa
 
 Route::resource('wishes', 'WishController');
 Route::get('{user}/wishes', ['as' => 'wishes.user_index', 'uses' => 'WishController@index']);
+Route::post('wishes/{wishes}/archive', ['as' => 'wishes.archive', 'uses' => 'WishController@archive']);
 
 
-Route::get('/{user}', ['as' => 'users.show', 'uses' => 'UserController@show']);
-Route::get('/{user}/edit', ['as' => 'users.edit', 'uses' => 'UserController@edit']);
-Route::put('/{user}/update', ['as' => 'users.update', 'uses' => 'UserController@update']);
+Route::get('{user}', ['as' => 'users.show', 'uses' => 'UserController@show']);
+Route::get('{user}/edit', ['as' => 'users.edit', 'uses' => 'UserController@edit']);
+Route::put('{user}/update', ['as' => 'users.update', 'uses' => 'UserController@update']);
