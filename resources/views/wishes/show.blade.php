@@ -38,7 +38,15 @@
                     <hr>
                 </div>
                 <div class="controll-buttons visible-xs col-xs-12">
+                    @if($wish->isArchived())
+                        <span class="btn btn-block" disabled>Подарено {{ $wish->archived_at->format('d.m.Y') }}</span>
+                    @endif
                     @can('update', $wish)
+                        @if(!$wish->isArchived())
+                            {{ Form::open(['method' => 'POST', 'route' => ['wishes.archive', $wish->id], 'class' => 'form-inline']) }}
+                            {{ Form::button('<i class="fa fa-gift"></i> Подарено', ['type' => 'submit', 'class' => 'btn btn-primary btn-block']) }}
+                            {{ Form::close() }}
+                        @endif
                         <a class="btn btn-block btn-default" href="{{ route('wishes.edit', $wish->id) }}"><i class="fa fa-pencil"></i> Изменить</a>
                     @endcan
                     @can('delete', $wish)
