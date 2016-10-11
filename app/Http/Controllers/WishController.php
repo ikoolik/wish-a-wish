@@ -37,7 +37,7 @@ class WishController extends Controller
             return redirect(route('wishes.user_index', auth()->user()->slug));
         }
 
-        $wishes = $user->wishes()->orderBy('created_at', 'desc')->get();
+        $wishes = $user->wishes()->notArchived()->orderBy('created_at', 'desc')->get();
         return view('wishes.index', compact('wishes', 'user'));
 
     }

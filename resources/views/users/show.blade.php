@@ -14,7 +14,7 @@
                     <p>Дата регистрации {{ $user->created_at->format('d.m.Y') }}</p>
                     <p>
                         <a href="{{ route('wishes.user_index', $user->slug) }}">
-                            Желания ({{ $user->wishes()->count() }})
+                            Желания ({{ $user->wishes()->notArchived()->count() }})
                         </a>
                     </p>
                     @can('update', $user)
