@@ -18,7 +18,7 @@
                                 {{ Form::button('<i class="fa fa-gift"></i> Подарено', ['type' => 'submit', 'class' => 'btn btn-primary btn-block']) }}
                                 {{ Form::close() }}
                             @endif
-                            <a class="btn btn-block btn-default" href="{{ route('wishes.archive', $wish->id) }}"><i class="fa fa-pencil"></i> Изменить</a>
+                            <a class="btn btn-block btn-default" href="{{ route('wishes.edit', $wish->id) }}"><i class="fa fa-pencil"></i> Изменить</a>
                         @endcan
                         @can('delete', $wish)
                             {{ Form::open(['method' => 'DELETE', 'route' => ['wishes.destroy', $wish->id], 'class' => 'form-inline']) }}
