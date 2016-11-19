@@ -19,4 +19,14 @@ class WishPolicy
     {
         return $user->owns($wish);
     }
+
+    public function book(User $user, Wish $wish)
+    {
+        return !$user->owns($wish) && !$wish->isBooked();
+    }
+
+    public function unbook(User $user, Wish $wish)
+    {
+        return !$user->owns($wish) && $wish->isBooked() && $wish->isBookedBy($user);
+    }
 }

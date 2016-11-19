@@ -42,6 +42,21 @@ class Wish extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function bookedBy()
+    {
+        return $this->belongsTo(User::class, 'booked_by');
+    }
+
+    public function isBooked()
+    {
+        return !is_null($this->bookedBy);
+    }
+
+    public function isBookedBy(User $user)
+    {
+        return $this->bookedBy->id === $user->id;
+    }
+
     /**
      * @param UploadedFile $file
      *

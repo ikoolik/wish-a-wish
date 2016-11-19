@@ -21,9 +21,12 @@
                 @endif
                 @foreach($wishes as $wish)
                         <div class="col-sm-4 col-md-3">
-                            <div class="panel panel-default material">
+                            <div class="panel panel-{{ $wish->isBooked() ? 'default' : 'primary' }} material">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
+                                        @if($wish->isBooked())
+                                            <i class="fa fa-lock"></i>&nbsp;
+                                        @endif
                                         {{ $wish->name }}
                                     </h3>
                                 </div>

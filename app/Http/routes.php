@@ -39,6 +39,8 @@ Route::post('password/reset', ['as' => 'auth.password.reset', 'uses' => 'Auth\Pa
 Route::resource('wishes', 'WishController');
 Route::get('{user}/wishes', ['as' => 'wishes.user_index', 'uses' => 'WishController@index']);
 Route::post('wishes/{wishes}/archive', ['as' => 'wishes.archive', 'uses' => 'WishController@archive']);
+Route::post('wishes/{wishes}/book', ['as' => 'wishes.book', 'uses' => 'WishController@book']);
+Route::post('wishes/{wishes}/unbook', ['as' => 'wishes.unbook', 'uses' => 'WishController@unbook']);
 
 
 Route::get('{user}', ['as' => 'users.show', 'uses' => 'UserController@show']);

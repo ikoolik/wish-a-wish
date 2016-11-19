@@ -169,6 +169,28 @@ class WishController extends Controller
         return redirect(route('wishes.show', $wish->id));
     }
 
+    public function book(Wish $wish)
+    {
+        if(request()->user()->cannot('book', $wish)) {
+            abort(403);
+        }
+
+        $wish->bookedBy()->associate(request()->user());
+        $wish->save();
+        return redirect(route('wishes.show', $wish->id));
+    }
+
+    public function unbook(Wish $wish)
+    {
+        if(request()->user()->cannot('unbook', $wish)) {
+            abort(403);
+        }
+
+        $wish->bookedBy()->associate(null);
+        $wish->save();
+        return redirect(route('wishes.show', $wish->id));
+    }
+
     /**
      * Remove the specified resource from storage.
      *
