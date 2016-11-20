@@ -15,7 +15,7 @@
           type='text/css'>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/css/app.css" type="text/css">
+    <link rel="stylesheet" href="{{ elixir('css/app.css') }}" text="text/css">
 
 </head>
 <body id="app-layout">

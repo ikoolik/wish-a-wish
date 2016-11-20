@@ -55,7 +55,7 @@
                         <span class="btn btn-block" disabled>Желание забронировано</span>
                     @endif
                     @can('book', $wish)
-                        {{ Form::open(['method' => 'POST', 'route' => ['wishes.archive', $wish->id], 'class' => 'form-inline']) }}
+                        {{ Form::open(['method' => 'POST', 'route' => ['wishes.book', $wish->id], 'class' => 'form-inline']) }}
                         {{ Form::button('<i class="fa fa-lock"></i> Забронировать', ['type' => 'submit', 'class' => 'btn btn-primary btn-block']) }}
                         {{ Form::close() }}
                     @endcan

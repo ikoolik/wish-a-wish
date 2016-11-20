@@ -10,4 +10,6 @@ elixir(function(mix) {
         "./bower_modules/bootstrap/dist/js/bootstrap.min.js",
         "./public/js/app.js"
     ]);
+
+    mix.version(['css/app.css'])
 });
