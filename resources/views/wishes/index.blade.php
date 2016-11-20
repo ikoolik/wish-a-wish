@@ -28,7 +28,7 @@
                                     </h3>
                                 </div>
                                 @if($wish->isBooked())
-                                    <span class="label label-warning label-booked">Заброниовано</span>
+                                    <span class="label label-danger label-booked">Забронировано</span>
                                 @endif
                                 <a href="{{ route('wishes.show', $wish->id) }}">
                                     <div class="square-image{{ $wish->isBooked() ? ' is-booked' : '' }}" style="background-image: url('{{ $wish->image }}')"></div>
