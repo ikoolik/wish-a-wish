@@ -42,6 +42,10 @@ body {
   padding-bottom: 100%;
   background: no-repeat center;
   background-size: cover;
+
+  &.is-booked {
+    opacity: 0.5;
+  }
 }
 
 .fa-btn {
@@ -87,4 +91,12 @@ body {
   .btn {
     margin: 5px 0;
   }
+}
+
+.label-booked {
+  position: absolute;
+  margin-top: 1em;
+  left: 2em;
+  font-size: 1.1em;
+  z-index: 1;
 }

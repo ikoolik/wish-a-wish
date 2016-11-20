@@ -21,17 +21,17 @@
                 @endif
                 @foreach($wishes as $wish)
                         <div class="col-sm-4 col-md-3">
-                            <div class="panel panel-{{ $wish->isBooked() ? 'default' : 'primary' }} material">
+                            <div class="panel panel-default material disabled">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
-                                        @if($wish->isBooked())
-                                            <i class="fa fa-lock"></i>&nbsp;
-                                        @endif
                                         {{ $wish->name }}
                                     </h3>
                                 </div>
+                                @if($wish->isBooked())
+                                    <span class="label label-warning label-booked">Заброниовано</span>
+                                @endif
                                 <a href="{{ route('wishes.show', $wish->id) }}">
-                                    <div class="square-image" style="background-image: url('{{ $wish->image }}')"></div>
+                                    <div class="square-image{{ $wish->isBooked() ? ' is-booked' : '' }}" style="background-image: url('{{ $wish->image }}')"></div>
                                 </a>
                             </div>
                         </div>
