@@ -4234,6 +4234,10 @@ vm-browserify@~0.0.1:
   dependencies:
     indexof "0.0.1"
 
+vue-resource:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/vue-resource/-/vue-resource-1.0.3.tgz#8d52d0d8a9ed5f2ae704c68d530c84ceaf97be14"
+
 vue@^1.0.25:
   version "1.0.28"
   resolved "https://registry.yarnpkg.com/vue/-/vue-1.0.28.tgz#ed2ff07b200bde15c87a90ef8727ceea7d38567d"

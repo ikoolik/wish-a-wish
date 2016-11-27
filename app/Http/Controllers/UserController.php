@@ -8,6 +8,19 @@ use Wish\User;
 
 class UserController extends Controller
 {
+
+    /**
+     * @return mixed
+     */
+    public function index()
+    {
+        if(!request('q')) {
+            return [];
+        }
+
+        return User::take(request('limit', 5))->byQuery(request('q'))->get(['name', 'slug']);
+    }
+
     /**
      * Display the specified resource.
      *

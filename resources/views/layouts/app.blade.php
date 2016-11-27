@@ -38,7 +38,6 @@
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             {!! Breadcrumbs::renderIfExists() !!}
-
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Войти</a></li>
@@ -47,6 +46,9 @@
                     <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Выйти</a></li>
                 @endif
             </ul>
+            <span class="navbar-form navbar-right">
+                <search></search>
+            </span>
         </div>
     </div>
 </nav>
@@ -71,7 +73,7 @@
     </div>
 @endif
 
-<div id="vue-app">
+<div>
     @yield('content')
 </div>
 

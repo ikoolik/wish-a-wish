@@ -61,4 +61,11 @@ class User extends Authenticatable
         $hash = md5(strtolower(trim($this->email)));
         return "https://www.gravatar.com/avatar/{$hash}?s=200&d=mm";
     }
+
+    public function scopeByQuery($query, $q)
+    {
+        return $query->where('name', 'like', "%$q%")
+            ->orWhere('email', 'like', "%$q%")
+            ->orWhere('slug', 'like', "%$q%");
+    }
 }

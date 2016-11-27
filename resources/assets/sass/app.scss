@@ -100,3 +100,30 @@ body {
   font-size: 1.1em;
   z-index: 1;
 }
+
+.search-input {
+  width: 300px!important;
+
+  &.has-results {
+    border-radius: 5px 5px 0 0;
+  }
+}
+.search-results {
+  width: 300px;
+  border: 1px solid #ccc;
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
+  background-color: white;
+  position: absolute;
+  list-style: none;
+  padding: 0;
+
+  li {
+    margin: 0;
+    padding: .5em 1em;
+
+    a {
+      width: 100%;
+    }
+  }
+}
