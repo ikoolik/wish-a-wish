@@ -64,8 +64,8 @@ class User extends Authenticatable
 
     public function scopeByQuery($query, $q)
     {
-        return $query->where('name', 'like', "%$q%")
-            ->orWhere('email', 'like', "%$q%")
-            ->orWhere('slug', 'like', "%$q%");
+        return $query->where('name', 'ilike', "%$q%")
+            ->orWhere('email', 'ilike', "%$q%")
+            ->orWhere('slug', 'ilike', "%$q%");
     }
 }
