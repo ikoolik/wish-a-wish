@@ -4,8 +4,10 @@ namespace Wish\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
 use Validator;
 use Wish\Http\Controllers\Controller;
+use Wish\SocialAccount;
 use Wish\User;
 
 class AuthController extends Controller

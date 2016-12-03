@@ -4,6 +4,8 @@ namespace Wish\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use SocialiteProviders\Manager\SocialiteWasCalled;
+use SocialiteProviders\VKontakte\VKontakteExtendSocialite;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -13,9 +15,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Wish\Events\SomeEvent' => [
-            'Wish\Listeners\EventListener',
-        ],
+        SocialiteWasCalled::class => [
+            VKontakteExtendSocialite::class,
+        ]
     ];
 
     /**

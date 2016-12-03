@@ -16,22 +16,14 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'slug'
-    ];
+    protected $fillable = ['name', 'email', 'password', 'slug'];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * Get the route key for the model.
@@ -49,6 +41,14 @@ class User extends Authenticatable
     public function wishes()
     {
         return $this->hasMany(Wish::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function socialAccounts()
+    {
+        return $this->hasMany(SocialAccount::class);
     }
 
     public function owns(Wish $wish)

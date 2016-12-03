@@ -12,7 +12,7 @@ trait HasSlug
     public static function bootHasSlug()
     {
         static::creating(function ($model) {
-            $initialSlug = $slug = str_slug($model->name);
+            $initialSlug = $slug = $model->slug ?: str_slug($model->name);
 
             $i = 1;
             while (static::where('slug', $slug)->withTrashed()->count()) {

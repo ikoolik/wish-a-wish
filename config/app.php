@@ -155,6 +155,7 @@ return [
         Aws\Laravel\AwsServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+        SocialiteProviders\Manager\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -220,7 +221,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'AWS' => Aws\Laravel\AwsFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
+        'Socialite' => \Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];
