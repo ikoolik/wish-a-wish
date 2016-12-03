@@ -16,7 +16,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'slug'];
+    protected $fillable = ['name', 'email', 'password', 'slug', 'avatar'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -58,6 +58,9 @@ class User extends Authenticatable
 
     public function avatarUrl()
     {
+        if($this->avatar) {
+            return $this->avatar;
+        }
         $hash = md5(strtolower(trim($this->email)));
         return "https://www.gravatar.com/avatar/{$hash}?s=200&d=mm";
     }

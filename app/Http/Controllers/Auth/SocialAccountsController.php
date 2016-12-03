@@ -37,7 +37,7 @@ class SocialAccountsController extends Controller
             return redirect('/login')->withErrors(["При авторизации во внешней системе произошла ошибка"]);
         }
 
-        $externalUser = \Socialite::driver($provider)->user();
+        $externalUser = \Socialite::driver($provider)->fields(['uid', 'first_name', 'last_name', 'screen_name', 'photo_200'])->user();
         $socialAccount = SocialAccount::firstOrCreate(['provider' => $provider, 'external_id' => $externalUser->id]);
         $user = $socialAccount->user;
         if(!$user) {
@@ -67,7 +67,8 @@ class SocialAccountsController extends Controller
             $user = User::create([
                 'email' => $externalUser->email,
                 'name' => $externalUser->name,
-                'slug' => $externalUser->nickname
+                'slug' => $externalUser->nickname,
+                'avatar' => $externalUser->user['photo_200']
             ]);
         }
         return $user;
