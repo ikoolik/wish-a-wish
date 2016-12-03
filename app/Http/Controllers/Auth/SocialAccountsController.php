@@ -38,11 +38,12 @@ class SocialAccountsController extends Controller
         }
 
         $externalUser = \Socialite::driver($provider)->fields(['uid', 'first_name', 'last_name', 'screen_name', 'photo_200'])->user();
-        $socialAccount = SocialAccount::firstOrCreate(['provider' => $provider, 'external_id' => $externalUser->id]);
-        $user = $socialAccount->user;
-        if(!$user) {
+        $socialAccount = SocialAccount::where('provider', $provider)->where('external_id', $externalUser->id)->first();
+        if(!$socialAccount) {
             $user = $this->getUserByExternalData($externalUser);
-            $user->socialAccounts()->save($socialAccount);
+            $user->socialAccounts()->save(new SocialAccount(['provider' => $provider, 'external_id' => $externalUser->id]));
+        } else {
+            $user = $socialAccount->user;
         }
 
         auth()->login($user);
