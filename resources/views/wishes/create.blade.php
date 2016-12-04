@@ -10,7 +10,7 @@
                 <div class="col-md-3">
                     <label>Картинка</label>
                     <label>Картинка</label>
-                    <file-picker current="http://previews.123rf.com/images/naddya/naddya1311/naddya131100064/24188141-Gift-box-Vector-black-silhouette--Stock-Vector-gift.jpg"></file-picker>
+                    <file-picker current="http://www.dailyfreepsd.com/wp-content/uploads/2013/09/Free-Gift-Icon-PSD.png"></file-picker>
                 </div>
                 <div class="col-md-7">
                     <div class="form-group">

@@ -125,7 +125,7 @@ class Wish extends Model
      */
     public function getImageAttribute()
     {
-        return $this->image_url ?: "http://previews.123rf.com/images/naddya/naddya1311/naddya131100064/24188141-Gift-box-Vector-black-silhouette--Stock-Vector-gift.jpg";
+        return $this->image_url ?: "http://www.dailyfreepsd.com/wp-content/uploads/2013/09/Free-Gift-Icon-PSD.png";
     }
 
     public function presenter()
