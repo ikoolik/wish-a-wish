@@ -1,12 +1,11 @@
 <div class="file-picker">
-    <div class="square-image material" :style="{ 'background-image': `url('${this.image}')` }">
-    </div>
+    <div class="square-image material" :style="`background-image: url('${image}')`"></div>
     <br>
     <input type="hidden" name="image_upload_type" v-model="type">
-    <span class="btn btn-default btn-block" data-toggle="modal" data-target="#change-image-{{ unique }}">
+    <span class="btn btn-default btn-block" data-toggle="modal" :data-target="`#change-image-${unique}`">
         Заменить картинку
     </span>
-    <div class="modal fade" id="change-image-{{ unique }}" role="dialog">
+    <div class="modal fade" :id="`change-image-${unique}`" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <span type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -31,8 +30,8 @@
                             Вы можете выбрать изображение, загрузив его со своего компьютера или указав URL-строку, по которой это изображение доступно
                         </p>
 
-                        <label class="btn btn-default" for="input-file-{{ unique }}">Выбрать файл</label>
-                        <input name="image" type="file" class="hidden" id="input-file-{{ unique }}" @change="fileSelected">
+                        <label class="btn btn-default" :for="`input-file-${ unique }`">Выбрать файл</label>
+                        <input name="image" type="file" class="hidden" :id="`input-file-${ unique }`" @change="fileSelected">
                     </div>
                     <div class="tab-pane" id="provide-url">
                         <p>

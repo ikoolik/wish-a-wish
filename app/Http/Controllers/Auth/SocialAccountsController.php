@@ -1,12 +1,12 @@
 <?php
 
-namespace Wish\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 
-use Wish\Http\Controllers\Controller;
-use Wish\SocialAccount;
-use Wish\User;
+use App\Http\Controllers\Controller;
+use App\SocialAccount;
+use App\User;
 
 class SocialAccountsController extends Controller
 {

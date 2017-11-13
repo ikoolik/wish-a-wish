@@ -1,5 +1,5 @@
 <?php
-namespace Wish\Traits;
+namespace App\Traits;
 
 /**
  * Sets unique `slug` property to the model during creation.

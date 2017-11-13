@@ -1,10 +1,10 @@
 <?php
 
-namespace Wish\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Gate;
 use Illuminate\Http\Request;
-use Wish\User;
+use App\User;
 
 class UserController extends Controller
 {

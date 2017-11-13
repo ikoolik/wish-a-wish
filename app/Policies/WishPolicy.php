@@ -1,10 +1,10 @@
 <?php
 
-namespace Wish\Policies;
+namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Wish\User;
-use Wish\Wish;
+use App\User;
+use App\Wish;
 
 class WishPolicy
 {

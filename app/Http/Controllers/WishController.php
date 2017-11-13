@@ -1,6 +1,6 @@
 <?php
 
-namespace Wish\Http\Controllers;
+namespace App\Http\Controllers;
 
 use AWS;
 use Config;
@@ -8,9 +8,9 @@ use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Image;
-use Wish\Http\Requests;
-use Wish\User;
-use Wish\Wish;
+use App\Http\Requests;
+use App\User;
+use App\Wish;
 
 class WishController extends Controller
 {
@@ -134,9 +134,9 @@ class WishController extends Controller
         $this->validate($request, [
             'name' => 'required|string',
             'description' => 'string',
-            'image' => 'image',
-            'image_url' => 'string',
-            'image_upload_type' => 'string'
+            'image' => 'nullable|image',
+            'image_url' => 'nullable|string',
+            'image_upload_type' => 'nullable|string'
         ]);
 
         $wish->update($request->except('image_url', 'image_upload_type'));

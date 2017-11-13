@@ -1,29 +1,33 @@
 <?php
 
-namespace Wish;
+namespace App;
 
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Wish\Traits\HasSlug;
 
 class User extends Authenticatable
 {
-    use HasSlug, SoftDeletes;
+    use Notifiable, SoftDeletes, HasSlug;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'slug', 'avatar'];
+    protected $fillable = [
+        'slug', 'name', 'email', 'password',
+    ];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 
     /**
      * Get the route key for the model.
