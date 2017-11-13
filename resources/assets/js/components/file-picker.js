@@ -17,7 +17,7 @@ export default Vue.extend({
 
     template: require('./file-picker.html'),
 
-    ready() {
+    created() {
         this.image = this.current
     },
 

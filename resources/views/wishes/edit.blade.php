@@ -8,7 +8,6 @@
             {{ Form::model($wish, ['method' => 'PUT', 'route' => ['wishes.update', $wish->id], 'files' => true]) }}
             <div class="row">
                 <div class="col-md-3">
-                    <label>Картинка</label>
                     <file-picker current="{{ $wish->image }}"></file-picker>
                 </div>
                 <div class="col-md-7">

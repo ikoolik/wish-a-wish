@@ -17,7 +17,7 @@ class AddSlugColumn extends Migration
             $table->index('slug');
         });
 
-        \Wish\User::all()->each(function (\Wish\User $user) {
+        \App\User::all()->each(function (\App\User $user) {
             $user->slug = str_random();
             $user->save();
         });

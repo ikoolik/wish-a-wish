@@ -1,11 +1,11 @@
 <?php
 
 
-Breadcrumbs::register('users.show', function ($breadcrumbs, \Wish\User $user) {
+Breadcrumbs::register('users.show', function ($breadcrumbs, \App\User $user) {
     $breadcrumbs->push($user->name, route('users.show', $user));
 });
 
-Breadcrumbs::register('users.edit', function ($breadcrumbs, \Wish\User $user) {
+Breadcrumbs::register('users.edit', function ($breadcrumbs, \App\User $user) {
     $breadcrumbs->parent('users.show', $user);
     $breadcrumbs->push('Настройки', route('users.edit', $user));
 });
@@ -17,17 +17,17 @@ Breadcrumbs::register('wishes.index', function ($breadcrumbs) {
 });
 
 // Someones Wishes
-Breadcrumbs::register('wishes.user_index', function ($breadcrumbs, \Wish\User $user) {
+Breadcrumbs::register('wishes.user_index', function ($breadcrumbs, \App\User $user) {
     $breadcrumbs->parent('users.show', $user);
     $breadcrumbs->push('Желания', route('wishes.user_index', $user->slug));
 });
 
-Breadcrumbs::register('wishes.show', function ($breadcrumbs, \Wish\Wish $wish) {
+Breadcrumbs::register('wishes.show', function ($breadcrumbs, \App\Wish $wish) {
     $breadcrumbs->parent('wishes.user_index', $wish->owner);
     $breadcrumbs->push($wish->name, route('wishes.show', $wish->id));
 });
 
-Breadcrumbs::register('wishes.edit', function ($breadcrumbs, \Wish\Wish $wish) {
+Breadcrumbs::register('wishes.edit', function ($breadcrumbs, \App\Wish $wish) {
     $breadcrumbs->parent('wishes.show', $wish);
     $breadcrumbs->push("Изменить", route('wishes.edit', $wish->id));
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wish;
+namespace App;
 
 use AWS;
 use Carbon\Carbon;
@@ -9,22 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Image;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Wish\Presenters\WishPresenter;
+use App\Presenters\WishPresenter;
 
 class Wish extends Model
 {
-    /** @var array */
-    protected $fillable = ['name', 'description'];
-
-    /** @var array */
+    protected $guarded = [];
     protected $appends = ['image'];
-
-    /** @var array  */
     protected $dates = ['archived_at'];
 
-    /**
-     * Register the lifecycle hooks
-     */
     static protected function boot()
     {
         parent::boot();
@@ -34,35 +26,27 @@ class Wish extends Model
         });
     }
 
-    /**
-     * @return BelongsTo
-     */
-    public function owner()
+    function owner()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function bookedBy()
+    function bookedBy()
     {
         return $this->belongsTo(User::class, 'booked_by');
     }
 
-    public function isBooked()
+    function isBooked()
     {
         return !is_null($this->bookedBy);
     }
 
-    public function isBookedBy(User $user)
+    function isBookedBy(User $user)
     {
         return $this->bookedBy->id === $user->id;
     }
 
-    /**
-     * @param UploadedFile $file
-     *
-     * @return $this|bool
-     */
-    public function setImageFromFile(UploadedFile $file)
+    function setImageFromFile(UploadedFile $file)
     {
         if (!$this->exists) {
             return false;
@@ -87,14 +71,14 @@ class Wish extends Model
     /**
      * @return $this
      */
-    public function archive()
+    function archive()
     {
         $this->archived_at = Carbon::create();
         $this->save();
         return $this;
     }
 
-    public function isArchived()
+    function isArchived()
     {
         return !is_null($this->archived_at);
     }
@@ -104,7 +88,7 @@ class Wish extends Model
      *
      * @return mixed
      */
-    public function scopeNotArchived($query)
+    function scopeNotArchived($query)
     {
         return $query->whereNull('archived_at');
     }
@@ -114,7 +98,7 @@ class Wish extends Model
      *
      * @return mixed
      */
-    public function scopeArchived($query)
+    function scopeArchived($query)
     {
         return $query->whereNotNull('archived_at');
     }
@@ -123,12 +107,12 @@ class Wish extends Model
     /**
      * @return string
      */
-    public function getImageAttribute()
+    function getImageAttribute()
     {
         return $this->image_url ?: "http://www.dailyfreepsd.com/wp-content/uploads/2013/09/Free-Gift-Icon-PSD.png";
     }
 
-    public function presenter()
+    function presenter()
     {
         return new WishPresenter($this);
     }

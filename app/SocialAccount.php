@@ -1,6 +1,6 @@
 <?php
 
-namespace Wish;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
