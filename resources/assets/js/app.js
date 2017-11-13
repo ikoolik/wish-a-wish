@@ -19,6 +19,7 @@ import Vue from 'vue';
 import filePicker from './components/file-picker'
 import search from './components/search';
 
+
 new Vue({
     el: '#app',
     components: { filePicker, search }
