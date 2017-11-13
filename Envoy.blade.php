@@ -7,8 +7,7 @@
     composer install
     php artisan migrate --force
     npm install
-    ./node_modules/.bin/bower install
-    ./node_modules/.bin/gulp
+    npm run prod
     php artisan up
 @endtask
 
