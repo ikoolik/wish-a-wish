@@ -18,7 +18,7 @@ export default {
     methods: {
         search() {
             axios.get(`/users?q=${this.q}&limit=5`).then(res => {
-                this.results = res.body;
+                this.results = res.data;
             })
         },
         href(slug) {
