@@ -47,8 +47,6 @@
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                {!! Breadcrumbs::render() !!}
-
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Войти</a></li>
