@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/users', function () {
-    return response()->json(\App\User::search(request('query'))->get());
+    return response()->json(\App\User::search(request('query'))->take(5)->get());
 });
 
 
