@@ -10,6 +10,6 @@ class UserWishes extends Controller
 {
     function index(User $user)
     {
-        return response()->json($user->wishes);
+        return response()->json($user->wishes()->notArchived()->get());
     }
 }
