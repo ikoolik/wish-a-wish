@@ -4,6 +4,14 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
+.search-results li.element {
+  cursor: pointer;
+}
+
+.search-results li.element:hover {
+  background-color: $color-clouds;
+}
+
 body {
   font-family: 'Open Sans';
 }

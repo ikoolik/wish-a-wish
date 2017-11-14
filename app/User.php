@@ -6,10 +6,11 @@ use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes, HasSlug;
+    use Notifiable, SoftDeletes, HasSlug, Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -74,5 +75,10 @@ class User extends Authenticatable
         return $query->where('name', 'ilike', "%$q%")
             ->orWhere('email', 'ilike', "%$q%")
             ->orWhere('slug', 'ilike', "%$q%");
+    }
+
+    public function searchableAs()
+    {
+        return 'users_index';
     }
 }
