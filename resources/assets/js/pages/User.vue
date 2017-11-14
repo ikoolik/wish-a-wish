@@ -8,7 +8,7 @@
                         <div class="square-image material" :style="`background-image: url('${user.avatar_url}')`"></div>
                     </div>
                     <div class="col-md-7 col-xs-12">
-                        <p>Дата регистрации {{ user.created_at }}</p>
+                        <p>Дата регистрации {{ user.created_at | date }}</p>
                         <p>
                             <router-link :to="`/${user.slug}/wishes`">
                                 Желания ({{ wishes.length }})

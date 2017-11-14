@@ -7,6 +7,7 @@ import filePicker from './components/file-picker'
 import Search from './components/Search.vue';
 import BreadCrumbs from './components/BreadCrumbs.vue';
 
+import './filters';
 import './bootstrap';
 
 new Vue({
