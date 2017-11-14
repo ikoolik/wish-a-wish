@@ -63,10 +63,10 @@ class WishController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string',
-            'description' => 'string',
-            'image' => 'image',
-            'image_url' => 'string',
-            'image_upload_type' => 'string'
+            'description' => 'nullable|string',
+            'image' => 'nullable|image',
+            'image_url' => 'nullable|string',
+            'image_upload_type' => 'nullable|string'
         ]);
 
         $wish = Auth::user()->wishes()->create($request->except('image_url', 'image_upload_type'));
@@ -133,7 +133,7 @@ class WishController extends Controller
 
         $this->validate($request, [
             'name' => 'required|string',
-            'description' => 'string',
+            'description' => 'nullable|string',
             'image' => 'nullable|image',
             'image_url' => 'nullable|string',
             'image_upload_type' => 'nullable|string'
