@@ -4,11 +4,12 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 import UserWishes from './pages/UserWishes.vue';
+import User from './pages/User.vue';
 
 export default new VueRouter({
     mode: 'history',
     routes: [
-        {path: '/:slug'},
+        {path: '/:slug', component: User},
         {path: '/:slug/wishes', component: UserWishes},
         {path: '/:slug/wishes/create'},
         {path: '/:slug/wishes/:wishId'}

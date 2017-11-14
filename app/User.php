@@ -30,6 +30,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $appends = [
+        'avatar_url'
+    ];
+
     /**
      * Get the route key for the model.
      *
@@ -62,6 +66,11 @@ class User extends Authenticatable
     }
 
     public function avatarUrl()
+    {
+        return $this->avatar_url;
+    }
+
+    public function getAvatarUrlAttribute()
     {
         if($this->avatar) {
             return $this->avatar;
