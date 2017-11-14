@@ -20,6 +20,12 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" text="text/css">
 
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'user_id' => auth()->id(),
+        ]); ?>
+    </script>
+
 </head>
 <body id="app-layout">
 <div id="app">
@@ -42,6 +48,7 @@
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 {!! Breadcrumbs::render() !!}
+
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Войти</a></li>

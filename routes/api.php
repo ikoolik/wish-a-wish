@@ -13,11 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/users', function () {
-    return response()->json(\App\User::search(request('query'))->take(5)->get());
-});
-
-
+Route::resource('users', 'Users');
+Route::resource('users.wishes', 'UserWishes');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

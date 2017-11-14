@@ -109,7 +109,7 @@ class Wish extends Model
      */
     function getImageAttribute()
     {
-        return $this->image_url ?: "http://www.dailyfreepsd.com/wp-content/uploads/2013/09/Free-Gift-Icon-PSD.png";
+        return $this->image_url ?: "/images/default.png";
     }
 
     function presenter()
