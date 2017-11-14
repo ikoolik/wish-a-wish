@@ -5,11 +5,12 @@ import store from './store';
 import filePicker from './components/file-picker'
 
 import Search from './components/Search.vue';
+import BreadCrumbs from './components/BreadCrumbs.vue';
 
 import './bootstrap';
 
 new Vue({
     router, store,
     el: '#app',
-    components: { filePicker, Search }
+    components: { filePicker, Search, BreadCrumbs }
 });

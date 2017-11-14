@@ -9,8 +9,8 @@ import User from './pages/User.vue';
 export default new VueRouter({
     mode: 'history',
     routes: [
-        {path: '/:slug', component: User},
-        {path: '/:slug/wishes', component: UserWishes},
+        {path: '/:slug', component: User, name: 'user'},
+        {path: '/:slug/wishes', component: UserWishes, name: 'user.wishes'},
         {path: '/:slug/wishes/create'},
         {path: '/:slug/wishes/:wishId'}
         // {path: '/login', component: Login},

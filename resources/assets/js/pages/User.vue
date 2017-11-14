@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-10 col-md-offset-1" v-if="user">
                 <h1>{{ user.name }}</h1>
                 <div class="row">
                     <div class="col-md-3 col-xs-8 col-xs-offset-2 col-md-offset-0">

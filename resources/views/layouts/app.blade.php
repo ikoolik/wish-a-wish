@@ -47,6 +47,7 @@
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <bread-crumbs></bread-crumbs>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Войти</a></li>
