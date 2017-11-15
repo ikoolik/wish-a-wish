@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" text="text/css">
 
     <script>
+        UPLOADCARE_PUBLIC_KEY = '{{ env('UPLOADCARE_PUBLIC_KEY') }}';
         window.Laravel = <?php echo json_encode([
             'user_id' => auth()->id(),
         ]); ?>

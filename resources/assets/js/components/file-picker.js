@@ -3,7 +3,7 @@ import Vue from 'vue';
 const FILE_UPLOAD_TYPE_URL = 'url';
 const FILE_UPLOAD_TYPE_FILE = 'file';
 export default Vue.extend({
-    props: ['current'],
+    props: ['value'],
 
     data() {
         return {
@@ -18,9 +18,16 @@ export default Vue.extend({
     template: require('./file-picker.html'),
 
     created() {
-        this.image = this.current
+        this.image = this.value
     },
 
+    watch: {
+        image(val) {
+            if(val !== this.value) {
+                this.$emit('input', val)
+            }
+        }
+    },
     methods: {
         fileSelected(e) {
             let that = this;

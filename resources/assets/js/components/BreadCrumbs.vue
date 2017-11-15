@@ -17,21 +17,31 @@
             }
         },
         computed: {
-            ...mapGetters(['userBySlug']),
+            ...mapGetters(['userBySlug', 'userById', 'wishById']),
             elements() {
                 switch(this.$route.name) {
                     case 'user.wishes':
                         return this.user ? [this.userBC, this.wishesBC] : [];
-                        break;
                     case 'user':
                         return this.user ? [this.userBC] : [];
+                    case 'wishes.show':
+                        return this.wish && this.user ? [this.userBC, this.wishesBC, this.wishBC] : [];
                     default:
                         return []
                 }
             },
+            wish() {
+                let id = +this.$route.params.wishId;
+                return this.wishById(id);
+            },
             user() {
                 let slug = this.$route.params.slug;
-                return this.userBySlug(slug)
+                let user = this.userBySlug(slug);
+                if(!user && this.wish) {
+                    user = this.userById(this.wish.user_id)
+                }
+
+                return user;
             },
             userBC()
             {
@@ -42,6 +52,11 @@
             {
                 if(!this.user) return null;
                 return {title: 'Желания', href: `/${this.user.slug}/wishes`};
+            },
+            wishBC()
+            {
+                if(!this.wish) return null;
+                return {title: this.wish.name, href: `/wishes/${this.wish.id}`};
             }
         }
     }

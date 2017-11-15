@@ -27,6 +27,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         \Route::model('user', User::class);
         \Route::model('wishes', Wish::class);
+        \Route::model('booking', Wish::class);
         parent::boot();
     }
 

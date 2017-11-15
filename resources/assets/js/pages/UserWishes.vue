@@ -6,11 +6,11 @@
                     <div v-if="isMe" class="col-sm-4 col-md-3">
                         <new-wish></new-wish>
                     </div>
-                    <a :href="`/wishes/${wish.id}`" v-for="wish in wishes">
+                    <router-link :to="`/wishes/${wish.id}`" v-for="wish in wishes" :key="wish.id">
                         <div class="col-sm-4 col-md-3">
                             <wish :wish="wish"></wish>
                         </div>
-                    </a>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
             this.fetchUserWishes(this.userSlug);
         },
         computed: {
-            ...mapGetters(['wishesByUserId', 'userBySlug']),
+            ...mapGetters(['activeWishesByUserId', 'userBySlug']),
             userSlug() {
                 return this.$route.params.slug
             },
@@ -43,7 +43,7 @@
                 return window.Laravel.user_id === this.user.id;
             },
             wishes() {
-                return this.user && this.wishesByUserId(this.user.id)
+                return this.user && this.activeWishesByUserId(this.user.id)
             }
         },
         methods: {

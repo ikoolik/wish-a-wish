@@ -5,8 +5,8 @@
                 Новое желание
             </h3>
         </div>
-        <a href="/wishes/create">
+        <router-link to="/wishes/create">
             <div class="square-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Plus_sign_font_awesome.svg/512px-Plus_sign_font_awesome.svg.png');"></div>
-        </a>
+        </router-link>
     </div>
 </template>

@@ -26,9 +26,9 @@ class Wish extends Model
         });
     }
 
-    function owner()
+    function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
     function bookedBy()

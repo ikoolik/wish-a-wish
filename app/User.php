@@ -6,11 +6,12 @@ use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
 use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes, HasSlug, Searchable;
+    use Notifiable, SoftDeletes, HasSlug, Searchable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
