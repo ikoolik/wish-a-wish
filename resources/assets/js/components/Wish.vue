@@ -13,7 +13,7 @@
         props: ['wish'],
         computed: {
             isBooked() {
-                return false;
+                return !! this.wish.booked_by;
             }
         }
     }

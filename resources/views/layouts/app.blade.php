@@ -54,7 +54,7 @@
                         <li><a href="{{ url('/login') }}">Войти</a></li>
                         <li><a href="{{ url('/register') }}">Регистрация</a></li>
                     @else
-                        <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Выйти</a></li>
+                        <li><logout></logout></li>
                     @endif
                 </ul>
                 <span class="navbar-form navbar-right">
