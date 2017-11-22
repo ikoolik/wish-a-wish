@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Wish;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Inwave\LaravelUploadcare\Facades\Uploadcare;
 
 class Wishes extends Controller
 {
@@ -27,6 +28,9 @@ class Wishes extends Controller
         ]);
 
         $wish = request()->user()->wishes()->create($data);
+        if($wish->image_url) {
+            Uploadcare::getFile($wish->image_url)->store();
+        }
 
         return response()->json($wish);
     }
@@ -35,6 +39,12 @@ class Wishes extends Controller
     {
         if(request()->user()->cannot('delete', $wish)) {
             abort(403);
+        }
+
+        if($wish->image_url) {
+            try {
+                Uploadcare::getFile($wish->image_url)->delete();
+            } catch (\Exception $e) {}
         }
 
         $wish->delete();

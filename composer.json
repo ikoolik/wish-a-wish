@@ -9,6 +9,7 @@
         "algolia/algoliasearch-client-php": "^1.23",
         "doctrine/dbal": "^2.6",
         "fideloper/proxy": "~3.3",
+        "inwave/laravel-uploadcare": "^1.4",
         "laravel/framework": "5.5.*",
         "laravel/passport": "^4.0",
         "laravel/scout": "^3.0",

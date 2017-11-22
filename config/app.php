@@ -168,6 +168,7 @@ return [
          * Package Service Providers...
          */
         \SocialiteProviders\Manager\ServiceProvider::class,
+        Inwave\LaravelUploadcare\LaravelUploadcareServiceProvider::class,
 
         /*
          * Application Service Providers...
