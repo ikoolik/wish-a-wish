@@ -19,6 +19,7 @@
 
 <script>
     import {mapActions, mapGetters} from 'vuex';
+    import {sortBy, reverse} from 'lodash';
 
     import Wish from '../components/Wish.vue';
     import NewWish from '../components/NewWish.vue';
@@ -43,7 +44,10 @@
                 return window.Laravel.user_id === this.user.id;
             },
             wishes() {
-                return this.user && this.activeWishesByUserId(this.user.id)
+                if(!this.user) return [];
+
+                let wishes = this.activeWishesByUserId(this.user.id);
+                return reverse(sortBy(wishes, 'id'))
             }
         },
         methods: {

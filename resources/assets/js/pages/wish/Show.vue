@@ -21,7 +21,7 @@
                     <div class="col-md-9 col-xs-12">
                         <div>
                             <i v-if="!wish.description">Комментарий отсутствует</i>
-                            <div v-html="wish.description"></div>
+                            <div v-html="description"></div>
                         </div>
                         <hr>
                     </div>
@@ -69,6 +69,13 @@
         },
         computed: {
             ...mapGetters(['wishById', 'userById']),
+            description() {
+                return this.wish.description
+                    .replace(/\n/g, "<br>")
+                    .replace(/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/g, link => {
+                        return `<a href='${link}' target='_blank' rel='noopener noreferrer' title='${link}'>${link}</a>`
+                    });
+            },
             user() {
                 return this.userById(this.wish.user_id)
             },
