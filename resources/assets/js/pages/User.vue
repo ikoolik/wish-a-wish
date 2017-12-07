@@ -10,9 +10,7 @@
                     <div class="col-md-7 col-xs-12">
                         <p>Дата регистрации {{ user.created_at | date }}</p>
                         <p>
-                            <router-link :to="`/${user.slug}/wishes`">
-                                Желания ({{ wishes.length }})
-                            </router-link>
+                            <router-link :to="`/${user.slug}/wishes`">Желания</router-link>
                         </p>
                         <hr>
                         <a v-if="isMe" class="btn btn-default" :href="`/${user.slug}/edit`"><i class="fa fa-pencil"></i> Изменить</a>
