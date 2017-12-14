@@ -16,7 +16,7 @@ class WishController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->only(['create', 'store']);
+        $this->middleware('auth')->only(['create']);
     }
 
     /**
@@ -53,43 +53,6 @@ class WishController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required|string',
-            'description' => 'nullable|string',
-            'image' => 'nullable|image',
-            'image_url' => 'nullable|string',
-            'image_upload_type' => 'nullable|string'
-        ]);
-
-        $wish = Auth::user()->wishes()->create($request->except('image_url', 'image_upload_type'));
-
-        if ($request->get('image_upload_type')) {
-            switch ($request->get('image_upload_type')) {
-                case 'file' :
-                    if (!is_null($request->file('image'))) {
-                        $wish->setImageFromFile($request->file('image'))->save();
-                    }
-                    break;
-                case 'url' :
-                    if (!is_null($request->get('image_url'))) {
-                        $wish->image_url = $request->get('image_url');
-                        $wish->save();
-                    }
-            }
-        }
-
-        return redirect(route('wishes.index'));
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param Wish $wish
@@ -115,96 +78,5 @@ class WishController extends Controller
         }
 
         return view('wishes.edit', compact('wish'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  Wish $wish
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Wish $wish)
-    {
-        if (Gate::denies('update', $wish)) {
-            return abort(403, 'Insufficient permission');
-        }
-
-        $this->validate($request, [
-            'name' => 'required|string',
-            'description' => 'nullable|string',
-            'image' => 'nullable|image',
-            'image_url' => 'nullable|string',
-            'image_upload_type' => 'nullable|string'
-        ]);
-
-        $wish->update($request->except('image_url', 'image_upload_type'));
-
-        if ($request->get('image_upload_type')) {
-            switch ($request->get('image_upload_type')) {
-                case 'file' :
-                    if (!is_null($request->file('image'))) {
-                        $wish->setImageFromFile($request->file('image'))->save();
-                    }
-                    break;
-                case 'url' :
-                    if (!is_null($request->get('image_url'))) {
-                        $wish->image_url = $request->get('image_url');
-                        $wish->save();
-                    }
-            }
-        }
-
-        return redirect(route('wishes.show', $wish->id));
-    }
-
-    public function archive(Wish $wish)
-    {
-        if (Gate::denies('update', $wish)) {
-            return abort(403, 'Insufficient permission');
-        }
-
-        $wish->archive();
-        return redirect(route('wishes.show', $wish->id));
-    }
-
-    public function book(Wish $wish)
-    {
-        if(request()->user()->cannot('book', $wish)) {
-            abort(403);
-        }
-
-        $wish->bookedBy()->associate(request()->user());
-        $wish->save();
-        return redirect(route('wishes.show', $wish->id));
-    }
-
-    public function unbook(Wish $wish)
-    {
-        if(request()->user()->cannot('unbook', $wish)) {
-            abort(403);
-        }
-
-        $wish->bookedBy()->associate(null);
-        $wish->save();
-        return redirect(route('wishes.show', $wish->id));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Wish $wish
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Wish $wish)
-    {
-        if (Gate::denies('delete', $wish)) {
-            return abort(403, 'Insufficient permission');
-        }
-
-        $wish->delete();
-        return redirect(route('wishes.index'));
     }
 }

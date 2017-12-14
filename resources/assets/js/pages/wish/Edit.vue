@@ -21,7 +21,8 @@
                             <textarea class="form-control" name="description" placeholder="Обязательно красного цвета" rows="10"  v-model="form.description"></textarea>
                         </div>
                         <hr>
-                        <span class="btn btn-primary" @click="save"><i class="fa fa-save"></i> Сохранить</span>
+                        <span v-if="!isLoading" class="btn btn-primary" @click="save"><i class="fa fa-save"></i> Сохранить</span>
+                        <span v-if="isLoading" class="btn btn-primary"><i class="fa fa-spin fa-spinner"></i> Сохраняем</span>
                     </div>
                 </div>
             </div>
@@ -39,6 +40,7 @@
         components: {UploadcareButton},
         data() {
             return {
+                isLoading: false,
                 form: {
                     id: null,
                     image_url: null,
@@ -54,9 +56,12 @@
         methods: {
             ...mapActions(['fetchWish', 'updateWish']),
             save() {
+                this.isLoading = true;
                 this.updateWish(this.form).then(() => {
+                    this.isLoading = false;
                     swal('Успех!', 'Желание успешно обновлено', 'success');
                 }).catch(() => {
+                    this.isLoading = false;
                     swal('Упс!', 'Произошла ошибка', 'error');
                 })
             }

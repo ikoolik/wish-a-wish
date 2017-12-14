@@ -22,6 +22,7 @@
 
     <script>
         UPLOADCARE_PUBLIC_KEY = '{{ env('UPLOADCARE_PUBLIC_KEY') }}';
+        UPLOADCARE_LOCALE = 'ru';
         window.Laravel = <?php echo json_encode([
             'user_id' => auth()->id(),
         ]); ?>

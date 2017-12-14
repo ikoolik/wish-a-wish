@@ -26,6 +26,8 @@
                         return this.user ? [this.userBC] : [];
                     case 'wishes.show':
                         return this.wish && this.user ? [this.userBC, this.wishesBC, this.wishBC] : [];
+                    case 'wishes.edit':
+                        return this.wish && this.user ? [this.userBC, this.wishesBC, this.wishBC, this.editWishBC] : [];
                     default:
                         return []
                 }
@@ -57,6 +59,11 @@
             {
                 if(!this.wish) return null;
                 return {title: this.wish.name, href: `/wishes/${this.wish.id}`};
+            },
+            editWishBC()
+            {
+                if(!this.wish) return null;
+                return {title: 'Изменить', href: `/wishes/${this.wish.id}/edit`};
             }
         }
     }
