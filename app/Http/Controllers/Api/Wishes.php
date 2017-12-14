@@ -35,6 +35,27 @@ class Wishes extends Controller
         return response()->json($wish);
     }
 
+    function update(Wish $wish)
+    {
+        if(request()->user()->cannot('update', $wish)) {
+            abort(403);
+        }
+
+        $data = request()->validate([
+            'name' => 'required|string',
+            'description' => 'nullable|string',
+            'image_url' => 'nullable|string',
+        ]);
+
+        if($wish->image_url !== $data['image_url']) {
+            if($wish->image_url) Uploadcare::getFile($wish->image_url)->delete();
+            if($data['image_url']) Uploadcare::getFile($data['image_url'])->store();
+        }
+        $wish->update($data);
+
+        return response()->json($wish);
+    }
+
     function destroy(Wish $wish)
     {
         if(request()->user()->cannot('delete', $wish)) {

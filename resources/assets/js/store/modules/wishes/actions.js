@@ -29,6 +29,12 @@ export const createWish = (store, wish) => {
     })
 };
 
+export const updateWish = (store, wish) => {
+    return axios.patch(`/api/wishes/${wish.id}`, wish).then(res => {
+        return processWish(store, res.data);
+    })
+};
+
 export const fetchWish = (store, id) => {
     return axios.get(`/api/wishes/${id}`).then(res => {
         processWish(store, res.data)

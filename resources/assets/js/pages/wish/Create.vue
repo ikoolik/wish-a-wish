@@ -30,16 +30,15 @@
 </template>
 
 <script>
-    import FilePicker from '../components/file-picker';
-    import UploadcareButton from '../components/UploadcareButton.vue';
+    import UploadcareButton from '../../components/UploadcareButton.vue';
 
     import {mapActions} from 'vuex';
     export default {
-        components: {FilePicker, UploadcareButton},
+        components: {UploadcareButton},
         data() {
             return {
                 form: {
-                    image: null,
+                    image_url: null,
                     name: '',
                     description: ''
                 }
@@ -50,8 +49,6 @@
             save() {
                 this.createWish(this.form).then(wish => {
                     this.$router.push(`/wishes/${wish.id}`);
-                }).catch(err => {
-
                 })
             }
         }
