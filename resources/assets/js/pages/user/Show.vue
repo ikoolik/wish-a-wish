@@ -6,14 +6,14 @@
                 <div class="row">
                     <div class="col-md-3 col-xs-8 col-xs-offset-2 col-md-offset-0">
                         <div class="square-image material" :style="`background-image: url('${user.avatar_url}')`"></div>
+                        <template v-if="isMe">
+                            <br>
+                            <router-link class="btn btn-default btn-block" :to="`/${user.slug}/edit`"><i class="fa fa-pencil"></i> Изменить</router-link>
+                        </template>
                     </div>
                     <div class="col-md-7 col-xs-12">
                         <p>Дата регистрации {{ user.created_at | date }}</p>
-                        <p>
-                            <router-link :to="`/${user.slug}/wishes`">Желания</router-link>
-                        </p>
-                        <hr>
-                        <a v-if="isMe" class="btn btn-default" :href="`/${user.slug}/edit`"><i class="fa fa-pencil"></i> Изменить</a>
+                        <router-link class="btn btn-primary" :to="`/${user.slug}/wishes`">Смотреть Желания</router-link>
                     </div>
                 </div>
             </div>

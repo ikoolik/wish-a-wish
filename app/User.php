@@ -13,27 +13,11 @@ class User extends Authenticatable
 {
     use Notifiable, SoftDeletes, HasSlug, Searchable, HasApiTokens;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'slug', 'name', 'email', 'password',
-    ];
+    protected $fillable = ['slug', 'name', 'email', 'password', 'avatar'];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
-    protected $appends = [
-        'avatar_url'
-    ];
+    protected $appends = ['avatar_url'];
 
     /**
      * Get the route key for the model.

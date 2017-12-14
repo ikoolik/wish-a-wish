@@ -22,8 +22,10 @@
                 switch(this.$route.name) {
                     case 'user.wishes':
                         return this.user ? [this.userBC, this.wishesBC] : [];
-                    case 'user':
+                    case 'user.show':
                         return this.user ? [this.userBC] : [];
+                    case 'user.edit':
+                        return this.user ? [this.userBC, this.editUserBC] : [];
                     case 'wishes.show':
                         return this.wish && this.user ? [this.userBC, this.wishesBC, this.wishBC] : [];
                     case 'wishes.edit':
@@ -49,6 +51,11 @@
             {
                 if(!this.user) return null;
                 return { title: this.user.name, href: `/${this.user.slug}`}
+            },
+            editUserBC()
+            {
+                if(!this.user) return null;
+                return { title: 'Изменить', href: `/${this.user.slug}/edit`}
             },
             wishesBC()
             {
