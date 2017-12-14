@@ -14,7 +14,7 @@
                             <span class="btn btn-primary btn-block" v-if="canUnbook" @click="unbook"><i class="fa fa-unlock-alt"></i> Отменить бронь</span>
 
                             <span class="btn btn-primary btn-block" v-if="canArchive" @click="archive"><i class="fa fa-gift"></i> Подарено</span>
-                            <a class="btn btn-block btn-default" v-if="canChange" :href="`/wishes/${wish.id}/edit`"><i class="fa fa-pencil"></i> Изменить</a>
+                            <router-link class="btn btn-block btn-default" v-if="canChange" :to="`/wishes/${wish.id}/edit`"><i class="fa fa-pencil"></i> Изменить</router-link>
                             <span class="btn btn-danger btn-block" v-if="canDelete" @click="destroy"><i class="fa fa-trash"></i> Удалить</span>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                         <span class="btn btn-primary btn-block" v-if="canUnbook" @click="unbook"><i class="fa fa-unlock-alt"></i> Отменить бронь</span>
 
                         <span class="btn btn-primary btn-block" v-if="canArchive" @click="archive"><i class="fa fa-gift"></i> Подарено</span>
-                        <a class="btn btn-block btn-default" v-if="isMine" :href="`/wishes/${wish.id}/edit`"><i class="fa fa-pencil"></i> Изменить</a>
+                        <router-link class="btn btn-block btn-default" v-if="canChange" :to="`/wishes/${wish.id}/edit`"><i class="fa fa-pencil"></i> Изменить</router-link>
                         <span class="btn btn-danger btn-block" v-if="isMine" @click="destroy"><i class="fa fa-trash"></i> Удалить</span>
                     </div>
                 </div>
