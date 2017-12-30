@@ -8,7 +8,9 @@
   cursor: pointer;
 }
 
-.search-results li.element:hover {
+.search-results li.element:hover,
+.search-results li.element:focus {
+  outline: 0;
   background-color: $color-clouds;
 }
 
