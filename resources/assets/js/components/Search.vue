@@ -53,7 +53,12 @@
                 $('.search .search-results .element:focus').next().focus();
             },
             focusPrev() {
-                $('.search .search-results .element:focus').prev().focus();
+                let prev = $('.search .search-results .element:focus').prev();
+                if(!prev.length) {
+                    this.focusInput()
+                } else {
+                    prev.focus();
+                }
             },
             reset() {
                 this.results = [];
