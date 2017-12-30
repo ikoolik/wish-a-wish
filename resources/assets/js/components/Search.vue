@@ -23,7 +23,7 @@
         },
         methods: {
             go(slug) {
-                window.location.href = `/${slug}`
+                window.location.href = `/${slug}/wishes`
             },
             search() {
                 axios.get(`/api/users?query=${this.query}`).then(res => {
