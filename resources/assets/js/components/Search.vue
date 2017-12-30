@@ -12,6 +12,7 @@
                 @keydown.39.prevent="go(result.slug)"
                 @keydown.38.prevent="focusPrev"
                 @keydown.40.prevent="focusNext"
+                @keydown.8.prevent="deleteKey"
             >
                 {{ result.name }}
             </li>
@@ -38,6 +39,13 @@
             }
         },
         methods: {
+            deleteKey() {
+                this.query = this.query.slice(0, -1);
+                this.focusInput();
+            },
+            focusInput() {
+                $('.search input').focus();
+            },
             focusResults() {
                 $('.search .search-results .element:first-child').focus();
             },
@@ -50,6 +58,7 @@
             reset() {
                 this.results = [];
                 this.query = '';
+                this.focusInput();
             },
             go(slug) {
                 window.location.href = `/${slug}/wishes`
