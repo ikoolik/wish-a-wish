@@ -18,8 +18,13 @@ body {
   font-family: 'Open Sans';
 }
 
+h1 {
+  font-family: "Oswald";
+  font-weight: 700;
+}
 .navbar .navbar-brand {
   font-family: 'Oswald';
+  font-weight: 700;
   font-size: 200%;
   color: $brand-primary;
 }
