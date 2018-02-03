@@ -71,10 +71,9 @@
             ...mapGetters(['wishById', 'userById']),
             description() {
                 return this.wish.description
-                    .replace(/\n/g, "<br>")
                     .replace(/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/g, link => {
                         return `<a href='${link}' target='_blank' rel='noopener noreferrer' title='${link}'>${link}</a>`
-                    });
+                    }).replace(/\n/g, "<br>");
             },
             user() {
                 return this.userById(this.wish.user_id)
