@@ -12,3 +12,7 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+if(window.Laravel.api_token) {
+  axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.Laravel.api_token;
+}

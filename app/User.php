@@ -13,9 +13,9 @@ class User extends Authenticatable
 {
     use Notifiable, SoftDeletes, HasSlug, Searchable, HasApiTokens;
 
-    protected $fillable = ['slug', 'name', 'email', 'password', 'avatar'];
+    protected $fillable = ['slug', 'name', 'email', 'password', 'avatar', 'api_token'];
 
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password', 'remember_token', 'api_token'];
 
     protected $appends = ['avatar_url'];
 

@@ -69,7 +69,8 @@ class SocialAccountsController extends Controller
                 'email' => $externalUser->email,
                 'name' => $externalUser->name,
                 'slug' => $externalUser->nickname,
-                'avatar' => $externalUser->user['photo_200']
+                'avatar' => $externalUser->user['photo_200'],
+                'api_token' => str_random(60),
             ]);
         }
         return $user;

@@ -25,6 +25,7 @@
         UPLOADCARE_LOCALE = 'ru';
         window.Laravel = <?php echo json_encode([
             'user_id' => auth()->id(),
+            'api_token' => auth()->check() ? auth()->user()->api_token : null
         ]); ?>
     </script>
 
