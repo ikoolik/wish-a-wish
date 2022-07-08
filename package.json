@@ -16,7 +16,7 @@
         "jquery": "^3.2",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
-        "moment": "^2.19.2",
+        "moment": "^2.29.4",
         "sweetalert": "^2.0.8",
         "uploadcare-widget": "^3.2.1",
         "vue": "^2.1.10",
